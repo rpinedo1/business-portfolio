@@ -1,70 +1,72 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Globe, Smartphone, Brain, Code, Zap, BarChart3 } from "lucide-react";
+import { Globe, Smartphone, Brain, Code, Zap, BarChart3, ArrowRight } from "lucide-react";
 
+/* M4 Messaging hierarchy: pillars that map to real outcomes
+   C1 Ogilvy: benefit-led, specific descriptions
+   C4 Halbert: conversational, desire-driven
+   D5 Visual hierarchy: icon → title → description → tags */
 const services = [
   {
     icon: Globe,
     title: "Web Applications",
     description:
-      "Full-stack web apps built for scale. From SaaS platforms to complex dashboards, we deliver performant, maintainable solutions.",
-    features: ["React / Next.js", "Scalable APIs", "Real-time Features"],
+      "SaaS platforms, dashboards, and internal tools — built with React and Node.js to handle thousands of users without breaking a sweat.",
+    features: ["React / Next.js", "Scalable APIs", "Real-time"],
   },
   {
     icon: Smartphone,
     title: "Websites & Landing Pages",
     description:
-      "Conversion-optimized websites that look stunning on every device. SEO-ready, fast-loading, and built to generate leads.",
-    features: ["Responsive Design", "SEO Optimized", "CMS Integration"],
+      "Fast-loading, SEO-optimized websites designed around one goal: turning your visitors into leads and your leads into customers.",
+    features: ["Responsive", "SEO-Ready", "CMS Built-in"],
   },
   {
     icon: Brain,
-    title: "AI Solutions",
+    title: "AI-Powered Products",
     description:
-      "Custom AI integrations that automate workflows, enhance user experience, and unlock insights from your data.",
-    features: ["Custom AI Agents", "NLP & Chat", "Data Analytics"],
+      "Custom AI agents, chatbots, and automation tools that save your team hours every week and give your users a smarter experience.",
+    features: ["Custom Agents", "NLP & Chat", "Data Pipelines"],
   },
   {
     icon: Code,
-    title: "Custom Development",
+    title: "Custom Integrations",
     description:
-      "Bespoke software solutions tailored to your unique business requirements. APIs, integrations, and everything in between.",
-    features: ["API Development", "Third-party Integrations", "Automation"],
+      "APIs, third-party hookups, and backend logic that connects your tools and automates the workflows slowing your team down.",
+    features: ["REST / GraphQL", "Webhooks", "Automation"],
   },
   {
     icon: Zap,
-    title: "Performance Optimization",
+    title: "Performance Audits",
     description:
-      "Speed kills — slow load times, that is. We audit and optimize your existing apps for blazing-fast performance.",
-    features: ["Core Web Vitals", "Load Time Reduction", "Code Splitting"],
+      "Slow sites lose customers. We audit your Core Web Vitals, cut load times, and fix the bottlenecks costing you conversions.",
+    features: ["Core Web Vitals", "Speed Optimization", "Code Splitting"],
   },
   {
     icon: BarChart3,
-    title: "Growth Strategy",
+    title: "Growth & Analytics",
     description:
-      "Data-driven technical strategy to ensure your digital products don't just work — they grow your bottom line.",
-    features: ["Analytics Setup", "A/B Testing", "Conversion Tracking"],
+      "Analytics setup, A/B tests, and conversion tracking so you know exactly what's working — and can double down on it.",
+    features: ["Analytics", "A/B Testing", "Conversion Tracking"],
   },
 ];
 
 const containerVariants = {
   hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.08 },
-  },
+  visible: { transition: { staggerChildren: 0.07 } },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45 } },
 };
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-24 lg:py-32">
+    <section id="services" className="relative py-28 lg:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Section header */}
+        {/* Section header — D5: clear hierarchy, scannable */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -73,48 +75,50 @@ export default function Services() {
           className="max-w-2xl"
         >
           <span className="text-sm font-medium uppercase tracking-widest text-amber">
-            What We Do
+            What We Build
           </span>
           <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Solutions Built for{" "}
+            Three Core Services.{" "}
             <span className="bg-gradient-to-r from-amber to-orange-400 bg-clip-text text-transparent">
-              Real Results
+              One Clear Goal.
             </span>
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            We don&apos;t just write code — we craft digital experiences that
-            solve problems and move the needle for your business.
+          {/* C9 StoryBrand: frame the customer's problem clearly */}
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            You need digital products that perform — not just look pretty.
+            We handle the strategy, design, and engineering so you can focus
+            on running your business.
           </p>
         </motion.div>
 
-        {/* Service cards */}
+        {/* Service cards — D8 Gestalt: consistent grouping */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
           className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
         >
           {services.map((service) => (
             <motion.div
               key={service.title}
               variants={itemVariants}
-              className="group relative rounded-2xl border border-white/5 bg-card p-8 transition-all duration-300 hover:border-amber/20 hover:bg-card/80"
+              className="group relative rounded-2xl border border-white/[0.06] bg-surface p-8 transition-all duration-300 hover:border-amber/20 hover:bg-surface/80"
             >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-amber/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-amber/[0.04] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="relative z-10">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-muted text-amber">
-                  <service.icon size={24} />
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-muted text-amber">
+                  <service.icon size={22} />
                 </div>
                 <h3 className="mt-5 text-lg font-semibold">{service.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
                   {service.description}
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {service.features.map((feature) => (
                     <span
                       key={feature}
-                      className="rounded-md bg-white/5 px-2.5 py-1 text-xs text-muted-foreground"
+                      className="rounded-md bg-white/[0.04] px-2.5 py-1 text-xs text-muted-foreground"
                     >
                       {feature}
                     </span>
@@ -123,6 +127,23 @@ export default function Services() {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Inline CTA — D6 Fitts's: easy to find secondary CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-14 text-center"
+        >
+          <a
+            href="#contact"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-amber transition-colors hover:text-orange-400"
+          >
+            Not sure which service you need? Let&apos;s figure it out together
+            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+          </a>
         </motion.div>
       </div>
     </section>
