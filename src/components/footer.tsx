@@ -5,7 +5,7 @@ const footerLinks = {
     { label: "Web Applications", href: "#services" },
     { label: "Websites", href: "#services" },
     { label: "AI Solutions", href: "#services" },
-    { label: "Performance", href: "#services" },
+    { label: "Performance Audits", href: "#services" },
   ],
   Company: [
     { label: "About", href: "#about" },
@@ -30,12 +30,12 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-[#080808]">
+    <footer className="border-t border-white/[0.05] bg-[#0e0e12]">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="#" className="flex items-center gap-2">
+            <a href="#" className="flex items-center gap-2.5">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-mono text-sm font-bold text-amber-foreground">
                 N
               </div>
@@ -44,8 +44,8 @@ export default function Footer() {
               </span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Building high-performance digital products that drive growth.
-              Web apps, websites, and AI solutions — engineered for results.
+              Web apps, websites, and AI products — designed for growth
+              and engineered to last.
             </p>
             <div className="mt-6 flex gap-3">
               {socials.map((s) => (
@@ -53,7 +53,7 @@ export default function Footer() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/5 text-muted-foreground transition-all hover:border-amber/20 hover:text-amber"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.06] text-muted-foreground transition-all hover:border-amber/20 hover:text-amber"
                 >
                   <s.icon size={16} />
                 </a>
@@ -82,13 +82,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 sm:flex-row">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/[0.05] pt-8 sm:flex-row">
           <p className="text-xs text-muted-foreground/50">
             &copy; {new Date().getFullYear()} NexGen Studio. All rights
             reserved.
           </p>
           <p className="text-xs text-muted-foreground/50">
-            Crafted with precision. Built for performance.
+            Built with precision. Engineered for results.
           </p>
         </div>
       </div>
