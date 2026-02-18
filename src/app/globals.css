@@ -45,6 +45,7 @@
   --color-amber-foreground: var(--amber-foreground);
   --color-amber-muted: var(--amber-muted);
   --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
 }
 
 :root {
