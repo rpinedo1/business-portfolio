@@ -30,28 +30,31 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-black/8 bg-slate-50/70">
+    <footer className="relative border-t border-black/8 bg-white/60">
+      {/* Top gradient accent */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber/40 to-transparent" />
+
       <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <a href="#" className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-mono text-sm font-bold text-amber-foreground">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-mono text-sm font-bold text-white">
                 N
               </div>
-              <span className="text-lg font-semibold tracking-tight text-foreground">
+              <span className="text-lg font-bold tracking-tight text-foreground">
                 NexGen<span className="text-amber">.</span>
               </span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Web apps, websites, and AI products designed for growth and engineered to last.
             </p>
-            <div className="mt-6 flex gap-3">
+            <div className="mt-6 flex gap-2.5">
               {socials.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 text-muted-foreground transition hover:border-amber/30 hover:text-amber"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-black/8 bg-white text-muted-foreground shadow-sm transition hover:border-amber/30 hover:text-amber hover:shadow-md"
                 >
                   <social.icon size={16} />
                 </a>
@@ -61,11 +64,14 @@ export default function Footer() {
 
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+              <h3 className="text-sm font-bold text-foreground">{title}</h3>
               <ul className="mt-4 space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-sm text-muted-foreground transition hover:text-foreground">
+                    <a
+                      href={link.href}
+                      className="text-sm text-muted-foreground transition hover:text-amber"
+                    >
                       {link.label}
                     </a>
                   </li>
@@ -75,7 +81,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-black/8 pt-6 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-black/6 pt-6 sm:flex-row">
           <p className="text-xs text-muted-foreground/80">
             &copy; {new Date().getFullYear()} NexGen Studio. All rights reserved.
           </p>

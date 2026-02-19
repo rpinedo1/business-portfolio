@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star } from "lucide-react";
 import { SectionHeader, SectionShell } from "@/components/section-shell";
 
 const testimonials = [
@@ -11,7 +11,11 @@ const testimonials = [
     name: "Sarah Chen",
     title: "CEO, FinTrack",
     avatar: "SC",
-    result: "3x engagement",
+    result: "3× engagement",
+    avatarBg: "bg-blue-50",
+    avatarText: "text-blue-600",
+    badgeBg: "bg-blue-50",
+    badgeText: "text-blue-600",
   },
   {
     quote:
@@ -20,6 +24,10 @@ const testimonials = [
     title: "CTO, Luminary",
     avatar: "MJ",
     result: "80% tickets automated",
+    avatarBg: "bg-violet-50",
+    avatarText: "text-violet-600",
+    badgeBg: "bg-violet-50",
+    badgeText: "text-violet-600",
   },
   {
     quote:
@@ -28,6 +36,10 @@ const testimonials = [
     title: "Founder, Greenleaf",
     avatar: "ER",
     result: "On time, on budget",
+    avatarBg: "bg-green-50",
+    avatarText: "text-green-700",
+    badgeBg: "bg-green-50",
+    badgeText: "text-green-700",
   },
   {
     quote:
@@ -36,14 +48,19 @@ const testimonials = [
     title: "VP Product, MedSync",
     avatar: "DP",
     result: "8-week delivery",
+    avatarBg: "bg-amber-muted",
+    avatarText: "text-amber",
+    badgeBg: "bg-amber-muted",
+    badgeText: "text-amber",
   },
 ];
 
 export default function Testimonials() {
   return (
     <SectionShell id="testimonials" className="relative overflow-hidden">
+      {/* Background accent */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-1/2 h-[350px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber/[0.08] blur-[130px]" />
+        <div className="absolute left-1/2 top-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber/[0.07] blur-[130px]" />
       </div>
 
       <div className="relative z-10">
@@ -53,52 +70,50 @@ export default function Testimonials() {
           align="center"
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="mt-12 grid gap-5 sm:grid-cols-2"
-        >
+        <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group relative rounded-2xl border border-black/8 bg-white p-7 shadow-[0_1px_2px_rgba(16,24,40,0.06)] transition hover:border-amber/25"
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="group relative rounded-2xl border border-black/8 bg-white p-7 shadow-[0_1px_3px_rgba(16,24,40,0.07)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/8"
             >
-              <div className="mb-5 flex items-center justify-between">
-                <Quote size={22} className="text-amber/25" />
-                <span className="rounded-full bg-amber-muted px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-amber">
-                  {t.result}
-                </span>
+              {/* Large decorative quote mark */}
+              <div
+                className="absolute right-6 top-5 font-serif text-7xl font-bold leading-none text-black/[0.04] select-none"
+                aria-hidden
+              >
+                &ldquo;
               </div>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+
+              {/* Result badge */}
+              <span className={`inline-flex items-center rounded-full ${t.badgeBg} ${t.badgeText} px-3 py-1 text-[10px] font-semibold uppercase tracking-wide`}>
+                {t.result}
+              </span>
+
+              <p className="relative z-10 mt-4 text-sm leading-relaxed text-foreground/80">
                 &ldquo;{t.quote}&rdquo;
               </p>
-              <div className="mt-6 flex items-center gap-3 border-t border-black/8 pt-5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-muted text-xs font-bold text-amber">
+
+              <div className="mt-6 flex items-center gap-3 border-t border-black/6 pt-5">
+                <div className={`flex h-9 w-9 items-center justify-center rounded-full ${t.avatarBg} ${t.avatarText} text-xs font-bold`}>
                   {t.avatar}
                 </div>
-                <div>
-                  <div className="text-sm font-semibold">{t.name}</div>
+                <div className="flex-1">
+                  <div className="text-sm font-bold text-foreground">{t.name}</div>
                   <div className="text-xs text-muted-foreground">{t.title}</div>
                 </div>
-                <div className="ml-auto flex gap-0.5">
+                <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, j) => (
-                    <Star
-                      key={j}
-                      size={12}
-                      className="fill-amber text-amber"
-                    />
+                    <Star key={j} size={11} className="fill-amber text-amber" />
                   ))}
                 </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </SectionShell>
   );
