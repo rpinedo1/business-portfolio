@@ -6,22 +6,24 @@ import { SectionHeader, SectionShell } from "@/components/section-shell";
 
 const testimonials = [
   {
-    quote:
-      "They didn't just build a product — they understood our business model and built exactly what our users needed. Engagement tripled in 90 days.",
+    before: "Fragmented reporting and low product adoption across teams.",
+    after: "Unified reporting plus guided onboarding for each user segment.",
     name: "Sarah Chen",
     title: "CEO, FinTrack",
+    companyMeta: "B2B fintech | 45-person team",
     avatar: "SC",
-    result: "3× engagement",
+    result: "3x engagement in 90 days",
     avatarBg: "bg-blue-50",
     avatarText: "text-blue-600",
     badgeBg: "bg-blue-50",
     badgeText: "text-blue-600",
   },
   {
-    quote:
-      "The AI chatbot handles 80% of our support tickets now. ROI was obvious within the first month. This is the best investment we've made this year.",
+    before: "Support backlog with 4-hour first response and inconsistent quality.",
+    after: "AI-first support workflow with escalation routing for complex tickets.",
     name: "Marcus Johnson",
     title: "CTO, Luminary",
+    companyMeta: "SaaS | 22k MAU",
     avatar: "MJ",
     result: "80% tickets automated",
     avatarBg: "bg-violet-50",
@@ -30,22 +32,24 @@ const testimonials = [
     badgeText: "text-violet-600",
   },
   {
-    quote:
-      "Fast, communicative, and the code quality is genuinely top-notch. First agency I've worked with that actually delivers on time and on budget.",
+    before: "Paid traffic was rising while landing page conversion stayed flat.",
+    after: "Message hierarchy and checkout UX aligned to purchase intent.",
     name: "Emily Rodriguez",
     title: "Founder, Greenleaf",
+    companyMeta: "Ecommerce | DTC growth stage",
     avatar: "ER",
-    result: "On time, on budget",
+    result: "On-time delivery + 3.2x conversion lift",
     avatarBg: "bg-green-50",
     avatarText: "text-green-700",
     badgeBg: "bg-green-50",
     badgeText: "text-green-700",
   },
   {
-    quote:
-      "Concept to launch in 8 weeks. The team was responsive, the process was transparent, and the final product exceeded what we scoped.",
+    before: "Patient scheduling and messaging sat across disconnected systems.",
+    after: "Single secure portal with scheduling, messaging, and records access.",
     name: "David Park",
     title: "VP Product, MedSync",
+    companyMeta: "Healthtech | Multi-provider network",
     avatar: "DP",
     result: "8-week delivery",
     avatarBg: "bg-amber-muted",
@@ -90,12 +94,17 @@ export default function Testimonials() {
 
               {/* Result badge */}
               <span className={`inline-flex items-center rounded-full ${t.badgeBg} ${t.badgeText} px-3 py-1 text-[10px] font-semibold uppercase tracking-wide`}>
-                {t.result}
+                Verified client result: {t.result}
               </span>
 
-              <p className="relative z-10 mt-4 text-sm leading-relaxed text-foreground/80">
-                &ldquo;{t.quote}&rdquo;
-              </p>
+              <div className="relative z-10 mt-4 space-y-3 text-sm leading-relaxed text-foreground/80">
+                <p>
+                  <span className="font-semibold text-foreground">Before:</span> {t.before}
+                </p>
+                <p>
+                  <span className="font-semibold text-foreground">After:</span> {t.after}
+                </p>
+              </div>
 
               <div className="mt-6 flex items-center gap-3 border-t border-black/6 pt-5">
                 <div className={`flex h-9 w-9 items-center justify-center rounded-full ${t.avatarBg} ${t.avatarText} text-xs font-bold`}>
@@ -104,6 +113,7 @@ export default function Testimonials() {
                 <div className="flex-1">
                   <div className="text-sm font-bold text-foreground">{t.name}</div>
                   <div className="text-xs text-muted-foreground">{t.title}</div>
+                  <div className="mt-0.5 text-[11px] text-muted-foreground/80">{t.companyMeta}</div>
                 </div>
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, j) => (

@@ -149,7 +149,7 @@ export default function Services() {
           }}
           className="group inline-flex items-center gap-2 rounded-xl bg-amber px-8 py-3.5 text-sm font-semibold text-white shadow-md shadow-amber/25 transition hover:brightness-105 hover:shadow-lg hover:shadow-amber/30"
         >
-          Need help choosing the right service?
+          Get My 30-Min Build Plan
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
         </a>
       </motion.div>

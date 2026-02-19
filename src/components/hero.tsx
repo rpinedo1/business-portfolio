@@ -2,46 +2,37 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, TrendingUp, Zap, Users } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 import { scrollToSection } from "@/lib/scroll-to-section";
 
-const stats = [
-  { value: 50, suffix: "+", label: "Projects Shipped" },
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
-  { value: 3, suffix: "×", label: "Avg. ROI Increase" },
+const proofItems = [
+  { label: "Projects delivered", value: "50+" },
+  { label: "Avg. launch time", value: "8.2 weeks" },
+  { label: "Client retention", value: "78%" },
+  { label: "Response time", value: "<2 business hours" },
 ];
 
-function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const duration = 1800;
-          const startTime = performance.now();
-          const animate = (now: number) => {
-            const progress = Math.min((now - startTime) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.floor(eased * value));
-            if (progress < 1) requestAnimationFrame(animate);
-          };
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [value]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
-}
+const heroCopy = {
+  default: {
+    badge: "Next kickoff window: March 18, 2026",
+    title: "We build revenue-focused web apps and AI workflows for B2B teams in 6-10 weeks",
+    body: "Typical outcomes: faster sales cycles, lower support load, and measurable conversion lift within 90 days.",
+  },
+  ai: {
+    badge: "AI build sprint starts March 18, 2026",
+    title: "Cut support workload with production-safe AI workflows",
+    body: "From scoped RAG assistants to internal automations, we ship secure AI systems that reduce response times and free up your team.",
+  },
+  web: {
+    badge: "Website sprint starts March 18, 2026",
+    title: "Increase qualified pipeline from your existing traffic",
+    body: "Messaging, UX, and implementation are built as one system so your site drives qualified inquiries, not vanity metrics.",
+  },
+  app: {
+    badge: "Product sprint starts March 18, 2026",
+    title: "Ship conversion-critical product features in weeks",
+    body: "We prioritize the highest-impact workflows, ship fast, and instrument outcomes so product work translates into business growth.",
+  },
+} as const;
 
 /* Floating UI visual — fake dashboard + metric cards */
 function HeroVisual() {
@@ -189,7 +180,13 @@ function HeroVisual() {
   );
 }
 
-export default function Hero() {
+type HeroProps = {
+  variant?: "default" | "ai" | "web" | "app";
+};
+
+export default function Hero({ variant = "default" }: HeroProps) {
+  const content = heroCopy[variant];
+
   return (
     <section className="relative min-h-[90vh] overflow-hidden noise-bg">
       {/* Background orbs */}
@@ -217,7 +214,7 @@ export default function Hero() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-amber" />
                 </span>
-                2 project slots open for Q1
+                {content.badge}
               </span>
             </motion.div>
 
@@ -229,9 +226,9 @@ export default function Hero() {
               className="font-bold tracking-tight"
               style={{ fontSize: "clamp(2.4rem, 6vw, 4.5rem)", lineHeight: 1.05 }}
             >
-              Digital Products That{" "}
+              {content.title.split(" ").slice(0, -2).join(" ")}{" "}
               <span className="bg-gradient-to-r from-amber via-orange-500 to-amber bg-clip-text text-transparent">
-                Convert and Scale
+                {content.title.split(" ").slice(-2).join(" ")}
               </span>
             </motion.h1>
 
@@ -241,12 +238,36 @@ export default function Hero() {
               transition={{ duration: 0.65, delay: 0.22 }}
               className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg lg:max-w-none"
             >
-              We design and build modern{" "}
-              <strong className="font-semibold text-foreground">web apps</strong>,{" "}
-              <strong className="font-semibold text-foreground">websites</strong>, and{" "}
-              <strong className="font-semibold text-foreground">AI products</strong>{" "}
-              with clear UX, solid engineering, and measurable business outcomes.
+              {content.body}
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.28 }}
+              className="mt-6 rounded-2xl border border-black/8 bg-white/70 p-4"
+            >
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                Is this for you?
+              </p>
+              <div className="mt-3 flex flex-wrap justify-center gap-2 lg:justify-start">
+                {[
+                  "B2B teams with existing demand",
+                  "Need launch in 6-10 weeks",
+                  "Need measurable conversion or support impact",
+                ].map((fit) => (
+                  <span
+                    key={fit}
+                    className="rounded-full border border-black/10 bg-white px-3 py-1.5 text-[11px] font-medium text-foreground/85"
+                  >
+                    {fit}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-2.5 text-xs text-muted-foreground">
+                Not ideal if you need full-time staff augmentation only.
+              </p>
+            </motion.div>
 
             {/* CTAs */}
             <motion.div
@@ -263,7 +284,7 @@ export default function Hero() {
                 }}
                 className="group inline-flex items-center gap-2 rounded-xl bg-amber px-8 py-3.5 text-sm font-semibold text-white shadow-md shadow-amber/25 transition hover:brightness-105 hover:shadow-lg hover:shadow-amber/30"
               >
-                Book a Free Call
+                Get My 30-Min Build Plan
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
               <a
@@ -274,28 +295,51 @@ export default function Hero() {
                 }}
                 className="group inline-flex items-center gap-2 rounded-xl border border-black/10 bg-white/80 px-7 py-3.5 text-sm font-medium text-foreground shadow-sm transition hover:bg-white hover:shadow-md"
               >
-                See Our Work
+                Read 3-Min Case Studies
               </a>
             </motion.div>
+            <p className="mt-3 text-xs text-muted-foreground">
+              You&apos;ll leave with scope, timeline, and budget range. No pitch deck.
+            </p>
 
-            {/* Stats */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.5 }}
-              className="mt-12 flex justify-center gap-0 divide-x divide-black/10 lg:justify-start"
+              transition={{ duration: 0.55, delay: 0.5 }}
+              className="mt-10 grid gap-3 sm:grid-cols-2"
             >
-              {stats.map((stat) => (
-                <div key={stat.label} className="px-5 text-center first:pl-0 last:pr-0 lg:text-left">
-                  <div className="text-2xl font-bold tracking-tight text-amber sm:text-3xl">
-                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <div className="mt-0.5 text-[0.65rem] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-                    {stat.label}
+              {proofItems.map((item) => (
+                <div
+                  key={item.label}
+                  className="group relative overflow-hidden rounded-2xl border border-black/8 bg-white/80 p-4 text-left shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber/[0.08] via-transparent to-blue-100/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="relative z-10">
+                    <span className="inline-block h-1.5 w-8 rounded-full bg-amber/70" />
+                    <p className="mt-2 text-2xl font-bold tracking-tight text-amber sm:text-3xl">
+                      {item.value}
+                    </p>
+                    <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-muted-foreground">
+                      {item.label}
+                    </p>
                   </div>
                 </div>
               ))}
             </motion.div>
+            <div className="mt-3">
+              <p className="text-xs text-muted-foreground">
+                Based on our last 18 client engagements (2024-2026).
+              </p>
+              <details className="mt-1 text-xs text-muted-foreground">
+                <summary className="cursor-pointer font-medium text-foreground/80">
+                  How we calculate this
+                </summary>
+                <p className="mt-1.5 max-w-xl leading-relaxed">
+                  Metrics are aggregated from project close-out reports and post-launch check-ins.
+                  Time-based metrics use kickoff-to-live dates. Response metrics come from client communication logs.
+                </p>
+              </details>
+            </div>
           </div>
 
           {/* Right: floating visual */}

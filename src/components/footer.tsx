@@ -14,17 +14,17 @@ const footerLinks = {
     { label: "Contact", href: "#contact" },
   ],
   Resources: [
-    { label: "Blog", href: "#" },
+    { label: "Build Plan Call", href: "#contact" },
     { label: "Case Studies", href: "#work" },
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
+    { label: "Delivery Process", href: "#about" },
+    { label: "Testimonials", href: "#testimonials" },
   ],
 };
 
 const socials = [
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Github, href: "#", label: "GitHub" },
+  { icon: Twitter, href: "https://x.com", label: "Twitter" },
+  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com", label: "GitHub" },
   { icon: Mail, href: "mailto:hello@nexgen.studio", label: "Email" },
 ];
 

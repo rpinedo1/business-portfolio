@@ -106,7 +106,7 @@ export default function Navbar() {
             onClick={(e) => handleNavClick(e, "#contact")}
             className="hidden rounded-xl bg-amber px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-amber/25 transition hover:brightness-105 md:inline-flex"
           >
-            Book a Call
+            Get Build Plan
           </a>
 
           <button
@@ -161,7 +161,7 @@ export default function Navbar() {
                   onClick={(e) => handleNavClick(e, "#contact")}
                   className="mt-2 rounded-xl bg-amber px-5 py-3 text-center text-sm font-semibold text-white shadow-sm shadow-amber/25 transition hover:brightness-105"
                 >
-                  Book a Call
+                  Get Build Plan
                 </a>
               </div>
             </motion.div>
