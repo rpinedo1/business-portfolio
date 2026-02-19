@@ -15,6 +15,18 @@ const team = [
     ringColor: "ring-amber/20",
     isFounder: true,
     linkedin: "#",
+    hoverBorder: "hover:border-amber/30",
+    hoverGlow: "from-amber/[0.08]",
+    about: {
+      paragraphs: [
+        "Full-stack developer and designer with a passion for building products that actually move the needle. With experience across SaaS platforms, AI integrations, and high-conversion landing pages, I bring both the technical depth and product instinct to turn complex problems into clean, scalable solutions.",
+        "I work directly with every client, from discovery through launch, to keep communication fast and decisions grounded in business goals.",
+      ],
+      skills: [
+        "React", "Next.js", "TypeScript", "Node.js",
+        "Python", "AI / LLM", "PostgreSQL", "AWS",
+      ],
+    },
   },
   {
     initials: "SM",
@@ -24,6 +36,18 @@ const team = [
     gradient: "from-blue-400 via-violet-500 to-purple-500",
     ringColor: "ring-violet-200",
     isFounder: false,
+    hoverBorder: "hover:border-violet-200",
+    hoverGlow: "from-violet-50/70",
+    about: {
+      paragraphs: [
+        "Product designer focused on simplifying complex workflows for B2B and SaaS products. I translate messy requirements into clean interfaces users can understand on first use.",
+        "I typically lead wireframes, visual systems, and prototype testing, then partner closely with engineering to keep design quality high through implementation.",
+      ],
+      skills: [
+        "Figma", "User Flows", "Design Systems", "UX Research",
+        "Prototyping", "Accessibility",
+      ],
+    },
   },
   {
     initials: "JO",
@@ -33,6 +57,18 @@ const team = [
     gradient: "from-emerald-400 via-green-500 to-teal-500",
     ringColor: "ring-green-200",
     isFounder: false,
+    hoverBorder: "hover:border-green-200",
+    hoverGlow: "from-green-50/70",
+    about: {
+      paragraphs: [
+        "Project manager with a background in digital product delivery for startups and small teams. I keep timelines realistic, risks visible, and communication consistent.",
+        "My role is turning strategy into weekly momentum by coordinating scope, dependencies, and feedback so projects move forward without surprises.",
+      ],
+      skills: [
+        "Agile Delivery", "Sprint Planning", "Client Communication", "QA Coordination",
+        "Risk Tracking", "Notion / Jira",
+      ],
+    },
   },
   {
     initials: "KN",
@@ -42,6 +78,18 @@ const team = [
     gradient: "from-indigo-500 via-blue-500 to-cyan-500",
     ringColor: "ring-indigo-200",
     isFounder: false,
+    hoverBorder: "hover:border-blue-200",
+    hoverGlow: "from-blue-50/70",
+    about: {
+      paragraphs: [
+        "AI engineer focused on practical applications of LLMs for internal tools and customer-facing products. I design reliable retrieval, prompting, and evaluation workflows.",
+        "I prioritize measurable outcomes over hype, making sure model integrations are secure, maintainable, and useful in day-to-day operations.",
+      ],
+      skills: [
+        "LLM Workflows", "RAG", "Prompt Engineering", "Python",
+        "Model Evaluation", "Vector Databases",
+      ],
+    },
   },
 ];
 
@@ -96,6 +144,10 @@ const processSteps = [
       "We learn your business, your users, and what success looks like. You walk away with clarity — even if we're not the right fit.",
     accent: "text-blue-500",
     dot: "bg-blue-400",
+    pinBg: "bg-blue-500",
+    pinShadow: "shadow-blue-200",
+    hoverBorder: "hover:border-blue-200",
+    hoverGlow: "from-blue-50/70",
   },
   {
     step: "02",
@@ -104,6 +156,10 @@ const processSteps = [
       "We map out the technical approach, define milestones, and give you a transparent, fixed-scope proposal.",
     accent: "text-violet-500",
     dot: "bg-violet-400",
+    pinBg: "bg-violet-500",
+    pinShadow: "shadow-violet-200",
+    hoverBorder: "hover:border-violet-200",
+    hoverGlow: "from-violet-50/70",
   },
   {
     step: "03",
@@ -112,6 +168,10 @@ const processSteps = [
       "Agile sprints with weekly demos. You're in the loop at every step, and can change direction without starting over.",
     accent: "text-amber",
     dot: "bg-amber",
+    pinBg: "bg-amber",
+    pinShadow: "shadow-amber/30",
+    hoverBorder: "hover:border-amber/30",
+    hoverGlow: "from-amber/[0.07]",
   },
   {
     step: "04",
@@ -120,6 +180,10 @@ const processSteps = [
       "We deploy, monitor performance, and optimize based on real user data. Then we help you scale what's working.",
     accent: "text-green-600",
     dot: "bg-green-400",
+    pinBg: "bg-green-500",
+    pinShadow: "shadow-green-200",
+    hoverBorder: "hover:border-green-200",
+    hoverGlow: "from-green-50/70",
   },
 ];
 
@@ -133,7 +197,7 @@ const cardVariants = {
 };
 
 export default function About() {
-  const [founderExpanded, setFounderExpanded] = useState(false);
+  const [expandedMembers, setExpandedMembers] = useState<Record<string, boolean>>({});
 
   return (
     <SectionShell id="about">
@@ -156,46 +220,52 @@ export default function About() {
           <motion.article
             key={member.name}
             variants={cardVariants}
-            className="group relative flex flex-col rounded-2xl border border-black/8 bg-white p-6 shadow-[0_1px_3px_rgba(16,24,40,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/8"
+            className={`group relative flex flex-col overflow-hidden rounded-2xl border border-black/8 bg-white p-6 shadow-[0_1px_3px_rgba(16,24,40,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/8 ${member.hoverBorder}`}
           >
+            <div className={`absolute inset-0 bg-gradient-to-br ${member.hoverGlow} to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
             {/* Founder badge */}
             {member.isFounder && (
-              <span className="absolute right-4 top-4 rounded-full bg-amber-muted px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-amber">
+              <span className="absolute right-4 top-4 z-10 rounded-full bg-amber-muted px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-amber">
                 Founder
               </span>
             )}
 
             {/* Avatar */}
             <div
-              className={`h-14 w-14 rounded-2xl bg-gradient-to-br ${member.gradient} flex items-center justify-center shadow-md ring-4 ${member.ringColor}`}
+              className={`relative z-10 h-14 w-14 rounded-2xl bg-gradient-to-br ${member.gradient} flex items-center justify-center shadow-md ring-4 ${member.ringColor}`}
             >
               <span className="text-lg font-bold text-white">{member.initials}</span>
             </div>
 
             {/* Identity */}
-            <div className="mt-4 flex-1">
+            <div className="relative z-10 mt-4 flex-1">
               <h3 className="text-base font-bold text-foreground">{member.name}</h3>
               <p className="mt-0.5 text-sm font-medium text-muted-foreground">{member.role}</p>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{member.bio}</p>
 
-              {/* Expandable detail — founder only */}
-              {member.isFounder && (
+              {/* Expandable detail */}
+              {member.about && (
                 <>
                   <button
-                    onClick={() => setFounderExpanded((v) => !v)}
+                    onClick={() =>
+                      setExpandedMembers((prev) => ({
+                        ...prev,
+                        [member.name]: !prev[member.name],
+                      }))
+                    }
                     className="mt-3 flex items-center gap-1 text-xs font-semibold text-amber transition-colors hover:text-orange-500"
                   >
                     About me
                     <ChevronDown
                       size={13}
-                      className={`transition-transform duration-300 ${founderExpanded ? "rotate-180" : ""}`}
+                      className={`transition-transform duration-300 ${expandedMembers[member.name] ? "rotate-180" : ""}`}
                     />
                   </button>
 
                   <AnimatePresence initial={false}>
-                    {founderExpanded && (
+                    {expandedMembers[member.name] && (
                       <motion.div
-                        key="founder-detail"
+                        key={`${member.name}-detail`}
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
@@ -203,27 +273,16 @@ export default function About() {
                         className="overflow-hidden"
                       >
                         <div className="mt-3 border-t border-black/6 pt-4">
-                          <p className="text-sm leading-relaxed text-muted-foreground">
-                            Full-stack developer and designer with a passion for building products
-                            that actually move the needle. With experience across{" "}
-                            <strong className="font-semibold text-foreground">SaaS platforms</strong>,{" "}
-                            <strong className="font-semibold text-foreground">AI integrations</strong>
-                            , and{" "}
-                            <strong className="font-semibold text-foreground">
-                              high-conversion landing pages
-                            </strong>
-                            , I bring both the technical depth and the product instinct to turn
-                            complex problems into clean, scalable solutions.
-                          </p>
-                          <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
-                            I work directly with every client — no account managers, no outsourced
-                            code. When you hire NexGen, you get me.
-                          </p>
+                          {member.about.paragraphs.map((paragraph, index) => (
+                            <p
+                              key={`${member.name}-paragraph-${index}`}
+                              className={`text-sm leading-relaxed text-muted-foreground ${index > 0 ? "mt-2.5" : ""}`}
+                            >
+                              {paragraph}
+                            </p>
+                          ))}
                           <div className="mt-4 flex flex-wrap gap-2">
-                            {[
-                              "React", "Next.js", "TypeScript", "Node.js",
-                              "Python", "AI / LLM", "PostgreSQL", "AWS",
-                            ].map((skill) => (
+                            {member.about.skills.map((skill) => (
                               <span
                                 key={skill}
                                 className="rounded-lg border border-black/8 bg-black/[0.02] px-2.5 py-1 font-mono text-xs font-medium text-foreground"
@@ -242,7 +301,7 @@ export default function About() {
 
             {/* LinkedIn — founder only */}
             {member.isFounder && (
-              <div className="mt-5 pt-4 border-t border-black/6">
+              <div className="relative z-10 mt-5 border-t border-black/6 pt-4">
                 <a
                   href={member.linkedin}
                   aria-label={`${member.name} on LinkedIn`}
@@ -313,15 +372,16 @@ export default function About() {
             {processSteps.map((step) => (
               <article
                 key={step.step}
-                className="relative flex gap-4 rounded-2xl border border-black/8 bg-white p-5 shadow-[0_1px_3px_rgba(16,24,40,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+                className={`group relative flex gap-4 overflow-hidden rounded-2xl border border-black/8 bg-white p-5 shadow-[0_1px_3px_rgba(16,24,40,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${step.hoverBorder}`}
               >
+                <div className={`absolute inset-0 bg-gradient-to-br ${step.hoverGlow} to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
                 <div className="relative shrink-0">
                   <div className={`flex h-9 w-9 items-center justify-center rounded-xl bg-white border border-black/8 shadow-sm font-mono text-sm font-bold ${step.accent}`}>
                     {step.step}
                   </div>
                   <div className={`absolute -right-[0.65rem] top-1/2 h-2 w-2 -translate-y-1/2 rounded-full ${step.dot} ring-2 ring-white`} />
                 </div>
-                <div className="pt-0.5">
+                <div className="relative z-10 pt-0.5">
                   <h3 className="text-base font-semibold text-foreground">{step.title}</h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                     {step.description}

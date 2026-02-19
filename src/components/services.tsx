@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Globe, Smartphone, Brain, Code, Zap, BarChart3, ArrowRight } from "lucide-react";
 import { SectionHeader, SectionShell } from "@/components/section-shell";
+import { scrollToSection } from "@/lib/scroll-to-section";
 
 const services = [
   {
@@ -142,7 +143,11 @@ export default function Services() {
       >
         <a
           href="#contact"
-          className="group inline-flex items-center gap-2 text-sm font-semibold text-amber transition-colors hover:text-orange-600"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection("#contact");
+          }}
+          className="group inline-flex items-center gap-2 rounded-xl bg-amber px-8 py-3.5 text-sm font-semibold text-white shadow-md shadow-amber/25 transition hover:brightness-105 hover:shadow-lg hover:shadow-amber/30"
         >
           Need help choosing the right service?
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />

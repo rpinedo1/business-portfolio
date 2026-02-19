@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, TrendingUp, Zap, Users } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { scrollToSection } from "@/lib/scroll-to-section";
 
 const stats = [
   { value: 50, suffix: "+", label: "Projects Shipped" },
@@ -256,6 +257,10 @@ export default function Hero() {
             >
               <a
                 href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("#contact");
+                }}
                 className="group inline-flex items-center gap-2 rounded-xl bg-amber px-8 py-3.5 text-sm font-semibold text-white shadow-md shadow-amber/25 transition hover:brightness-105 hover:shadow-lg hover:shadow-amber/30"
               >
                 Book a Free Call
@@ -263,6 +268,10 @@ export default function Hero() {
               </a>
               <a
                 href="#work"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("#work");
+                }}
                 className="group inline-flex items-center gap-2 rounded-xl border border-black/10 bg-white/80 px-7 py-3.5 text-sm font-medium text-foreground shadow-sm transition hover:bg-white hover:shadow-md"
               >
                 See Our Work

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { scrollToSection } from "@/lib/scroll-to-section";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -51,26 +52,6 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
-
-  const scrollToSection = (href: string) => {
-    if (!href.startsWith("#")) return;
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-    const section = document.querySelector(href) as HTMLElement | null;
-    if (!section) return;
-
-    // Target the first visible text element inside the section (eyebrow <p> or <h2>)
-    // so we land at the content, not at the section's top padding.
-    const firstText = section.querySelector("p, h2") as HTMLElement | null;
-    const target = firstText || section;
-    const headerH = window.innerWidth < 768 ? 84 : 88;
-    const top = target.getBoundingClientRect().top + window.scrollY - headerH - 20;
-
-    window.scrollTo({ top, behavior: "smooth" });
-    window.history.replaceState(null, "", href);
-  };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
