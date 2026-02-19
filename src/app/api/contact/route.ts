@@ -3,7 +3,11 @@ import { z } from "zod";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2).max(100),
-  email: z.string().trim().email().max(200),
+  email: z
+    .string()
+    .trim()
+    .email("Please provide a valid email address.")
+    .max(200),
   service: z.string().trim().min(1).max(100),
   project: z.string().trim().min(10).max(4000),
   company: z.string().trim().max(0).optional(),
@@ -19,15 +23,6 @@ function isRateLimited(ip: string) {
   recent.push(now);
   ipHits.set(ip, recent);
   return recent.length > MAX_REQUESTS_PER_WINDOW;
-}
-
-function escapeHtml(input: string) {
-  return input
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
 }
 
 export async function POST(req: NextRequest) {
@@ -54,49 +49,52 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
-    const fromEmail = process.env.CONTACT_FROM_EMAIL;
-    const toEmail = process.env.CONTACT_TO_EMAIL;
+    const webhookUrl = process.env.N8N_WEBHOOK_URL;
+    const webhookSecret = process.env.N8N_WEBHOOK_SECRET;
 
-    if (!apiKey || !fromEmail || !toEmail) {
+    if (!webhookUrl) {
       return NextResponse.json(
-        { error: "Email service is not configured." },
+        { error: "Automation webhook is not configured." },
         { status: 500 }
       );
     }
 
     const { name, email, service, project } = parsed.data;
+    const userAgent = req.headers.get("user-agent") ?? "unknown";
 
-    const subject = `New call request from ${name}`;
-    const html = `
-      <h2>New call request</h2>
-      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-      <p><strong>Service:</strong> ${escapeHtml(service)}</p>
-      <p><strong>Project details:</strong></p>
-      <p>${escapeHtml(project).replaceAll("\n", "<br />")}</p>
-    `;
-
-    const resendResponse = await fetch("https://api.resend.com/emails", {
+    const webhookResponse = await fetch(webhookUrl, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
+        ...(webhookSecret
+          ? { "x-webhook-secret": webhookSecret }
+          : {}),
       },
       body: JSON.stringify({
-        from: fromEmail,
-        to: [toEmail],
-        reply_to: email,
-        subject,
-        html,
+        source: "website-contact-form",
+        timestamp: new Date().toISOString(),
+        lead: {
+          name,
+          email,
+          service,
+          project,
+        },
+        metadata: {
+          ip,
+          userAgent,
+        },
       }),
       cache: "no-store",
     });
 
-    if (!resendResponse.ok) {
-      const errorText = await resendResponse.text();
+    if (!webhookResponse.ok) {
+      const errorText = await webhookResponse.text();
       return NextResponse.json(
-        { error: "Failed to send email.", provider: errorText },
+        {
+          error: "Failed to trigger automation.",
+          providerStatus: webhookResponse.status,
+          provider: errorText,
+        },
         { status: 502 }
       );
     }

@@ -12,6 +12,10 @@ const benefits = [
   "Fast response times and direct communication",
 ];
 
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 export default function CTA() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
@@ -33,6 +37,12 @@ export default function CTA() {
       company: String(formData.get("company") ?? ""),
     };
 
+    if (!isValidEmail(payload.email)) {
+      setStatus("error");
+      setStatusMessage("Please enter a valid email address.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -45,9 +55,14 @@ export default function CTA() {
       const data = await response.json();
 
       if (!response.ok) {
+        const providerDetails =
+          data?.providerStatus || data?.provider
+            ? ` (provider: ${data?.providerStatus ?? "unknown"} ${data?.provider ?? ""})`
+            : "";
         setStatus("error");
         setStatusMessage(
-          data?.error ?? "Could not send your request. Please try again."
+          (data?.error ?? "Could not send your request. Please try again.") +
+            providerDetails
         );
         return;
       }
