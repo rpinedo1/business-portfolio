@@ -2,10 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { SectionHeader, SectionShell } from "@/components/section-shell";
 
-/* C7 Cialdini: social proof — specific results, real names, authority titles
-   M5 Social proof engine: structured case-study style
-   C2 Hopkins: proof and specifics in every testimonial */
 const testimonials = [
   {
     quote:
@@ -43,36 +41,25 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section
-      id="testimonials"
-      className="relative overflow-hidden py-28 lg:py-36"
-    >
-      {/* Warm background glow */}
+    <SectionShell id="testimonials" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[350px] w-[550px] rounded-full bg-amber/[0.04] blur-[150px]" />
+        <div className="absolute left-1/2 top-1/2 h-[350px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber/[0.08] blur-[130px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative z-10">
+        <SectionHeader
+          eyebrow="Client Results"
+          title="Trusted by teams that need dependable delivery"
+          align="center"
+        />
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="text-center"
+          className="mt-12 grid gap-5 sm:grid-cols-2"
         >
-          <span className="text-sm font-medium uppercase tracking-widest text-amber">
-            Client Results
-          </span>
-          {/* C1 Ogilvy: specific, credibility-focused */}
-          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Don&apos;t Take Our Word for It.{" "}
-            <span className="bg-gradient-to-r from-amber to-orange-400 bg-clip-text text-transparent">
-              Take Theirs.
-            </span>
-          </h2>
-        </motion.div>
-
-        <div className="mt-16 grid gap-5 sm:grid-cols-2">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
@@ -80,11 +67,10 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group relative rounded-2xl border border-white/[0.06] bg-surface p-8 transition-all hover:border-amber/20"
+              className="group relative rounded-2xl border border-black/8 bg-white p-7 shadow-[0_1px_2px_rgba(16,24,40,0.06)] transition hover:border-amber/25"
             >
-              <div className="flex items-center justify-between mb-5">
+              <div className="mb-5 flex items-center justify-between">
                 <Quote size={22} className="text-amber/25" />
-                {/* Result badge — specific proof at a glance */}
                 <span className="rounded-full bg-amber-muted px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-amber">
                   {t.result}
                 </span>
@@ -92,7 +78,7 @@ export default function Testimonials() {
               <p className="text-sm leading-relaxed text-muted-foreground">
                 &ldquo;{t.quote}&rdquo;
               </p>
-              <div className="mt-6 flex items-center gap-3 border-t border-white/[0.04] pt-5">
+              <div className="mt-6 flex items-center gap-3 border-t border-black/8 pt-5">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-muted text-xs font-bold text-amber">
                   {t.avatar}
                 </div>
@@ -112,8 +98,8 @@ export default function Testimonials() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

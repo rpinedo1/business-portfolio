@@ -1,4 +1,4 @@
-import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 
 const footerLinks = {
   Services: [
@@ -30,48 +30,42 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] bg-[#141419]">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+    <footer className="border-t border-black/8 bg-slate-50/70">
+      <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
-          {/* Brand */}
           <div className="lg:col-span-2">
             <a href="#" className="flex items-center gap-2.5">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-mono text-sm font-bold text-amber-foreground">
                 N
               </div>
-              <span className="text-lg font-semibold tracking-tight">
+              <span className="text-lg font-semibold tracking-tight text-foreground">
                 NexGen<span className="text-amber">.</span>
               </span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Web apps, websites, and AI products — designed for growth
-              and engineered to last.
+              Web apps, websites, and AI products designed for growth and engineered to last.
             </p>
             <div className="mt-6 flex gap-3">
-              {socials.map((s) => (
+              {socials.map((social) => (
                 <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.06] text-muted-foreground transition-all hover:border-amber/20 hover:text-amber"
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 text-muted-foreground transition hover:border-amber/30 hover:text-amber"
                 >
-                  <s.icon size={16} />
+                  <social.icon size={16} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Links */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h3 className="text-sm font-semibold">{title}</h3>
+              <h3 className="text-sm font-semibold text-foreground">{title}</h3>
               <ul className="mt-4 space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    >
+                    <a href={link.href} className="text-sm text-muted-foreground transition hover:text-foreground">
                       {link.label}
                     </a>
                   </li>
@@ -81,15 +75,11 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/[0.05] pt-8 sm:flex-row">
-          <p className="text-xs text-muted-foreground/50">
-            &copy; {new Date().getFullYear()} NexGen Studio. All rights
-            reserved.
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-black/8 pt-6 sm:flex-row">
+          <p className="text-xs text-muted-foreground/80">
+            &copy; {new Date().getFullYear()} NexGen Studio. All rights reserved.
           </p>
-          <p className="text-xs text-muted-foreground/50">
-            Built with precision. Engineered for results.
-          </p>
+          <p className="text-xs text-muted-foreground/80">Built with precision and care.</p>
         </div>
       </div>
     </footer>

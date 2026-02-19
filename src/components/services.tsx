@@ -2,11 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Globe, Smartphone, Brain, Code, Zap, BarChart3, ArrowRight } from "lucide-react";
+import { SectionHeader, SectionShell } from "@/components/section-shell";
 
-/* M4 Messaging hierarchy: pillars that map to real outcomes
-   C1 Ogilvy: benefit-led, specific descriptions
-   C4 Halbert: conversational, desire-driven
-   D5 Visual hierarchy: icon → title → description → tags */
 const services = [
   {
     icon: Globe,
@@ -64,88 +61,65 @@ const itemVariants = {
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Section header — D5: clear hierarchy, scannable */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="max-w-2xl"
-        >
-          <span className="text-sm font-medium uppercase tracking-widest text-amber">
-            What We Build
-          </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Three Core Services.{" "}
-            <span className="bg-gradient-to-r from-amber to-orange-400 bg-clip-text text-transparent">
-              One Clear Goal.
-            </span>
-          </h2>
-          {/* C9 StoryBrand: frame the customer's problem clearly */}
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            You need digital products that perform — not just look pretty.
-            We handle the strategy, design, and engineering so you can focus
-            on running your business.
-          </p>
-        </motion.div>
+    <SectionShell id="services">
+      <SectionHeader
+        eyebrow="What We Build"
+        title="Services designed for speed, clarity, and growth"
+        description="We combine product strategy, clean design, and reliable engineering to deliver outcomes your team can measure."
+      />
 
-        {/* Service cards — D8 Gestalt: consistent grouping */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {services.map((service) => (
-            <motion.div
-              key={service.title}
-              variants={itemVariants}
-              className="group relative rounded-2xl border border-white/[0.06] bg-surface p-8 transition-all duration-300 hover:border-amber/20 hover:bg-surface/80"
-            >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-amber/[0.04] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="relative z-10">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-muted text-amber">
-                  <service.icon size={22} />
-                </div>
-                <h3 className="mt-5 text-lg font-semibold">{service.title}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
-                  {service.description}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {service.features.map((feature) => (
-                    <span
-                      key={feature}
-                      className="rounded-md bg-white/[0.04] px-2.5 py-1 text-xs text-muted-foreground"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Inline CTA — D6 Fitts's: easy to find secondary CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-14 text-center"
-        >
-          <a
-            href="#contact"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-amber transition-colors hover:text-orange-400"
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-80px" }}
+        className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {services.map((service) => (
+          <motion.article
+            key={service.title}
+            variants={itemVariants}
+            className="group relative rounded-2xl border border-black/8 bg-white/85 p-7 shadow-[0_1px_3px_rgba(16,24,40,0.08)] transition hover:-translate-y-0.5 hover:border-amber/25"
           >
-            Not sure which service you need? Let&apos;s figure it out together
-            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-          </a>
-        </motion.div>
-      </div>
-    </section>
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-amber/[0.07] via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="relative z-10">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-muted text-amber">
+                <service.icon size={22} />
+              </div>
+              <h3 className="mt-5 text-lg font-semibold">{service.title}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                {service.description}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {service.features.map((feature) => (
+                  <span
+                    key={feature}
+                    className="rounded-md border border-black/6 bg-black/[0.02] px-2.5 py-1 text-xs text-muted-foreground"
+                  >
+                    {feature}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.article>
+        ))}
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="mt-12 text-center"
+      >
+        <a
+          href="#contact"
+          className="group inline-flex items-center gap-2 text-sm font-medium text-amber transition-colors hover:text-orange-500"
+        >
+          Need help choosing the right service?
+          <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+        </a>
+      </motion.div>
+    </SectionShell>
   );
 }
