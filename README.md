@@ -73,6 +73,45 @@ npm run dev
 
 ---
 
+## CRO Flags and Hero A/B Testing
+
+You can control CRO behavior and hero A/B testing from `.env.local`:
+
+```env
+# Master switch for advanced CRO features
+NEXT_PUBLIC_CRO_MODE=true
+
+# Enables intent-driven hero copy matching (?intent=ai|web|app)
+NEXT_PUBLIC_ENABLE_INTENT_MATCHING=true
+
+# Enables URL hero A/B overrides (?hero=control|creative or ?ab=a|b)
+NEXT_PUBLIC_ENABLE_HERO_AB_QUERY=true
+
+# Default hero visual when no query param is provided: control or creative
+NEXT_PUBLIC_HERO_VISUAL_DEFAULT=creative
+
+# Mobile sticky CTA toggle
+NEXT_PUBLIC_SHOW_MOBILE_STICKY_CTA=true
+```
+
+### Quick usage
+
+- Control hero variant (A): `http://localhost:3000/?hero=control`
+- Creative hero variant (B): `http://localhost:3000/?hero=creative`
+- Short A/B params:
+  - `http://localhost:3000/?ab=a` -> control
+  - `http://localhost:3000/?ab=b` -> creative
+- Combine with intent matching:
+  - `http://localhost:3000/?intent=ai&ab=a`
+  - `http://localhost:3000/?intent=web&hero=creative`
+
+Notes:
+
+- If `NEXT_PUBLIC_ENABLE_HERO_AB_QUERY=false`, URL A/B params are ignored.
+- If `NEXT_PUBLIC_CRO_MODE=false`, advanced CRO blocks are disabled globally.
+
+---
+
 ## Run and Test Locally
 
 ### App validation

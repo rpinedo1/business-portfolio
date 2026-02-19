@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
 import { SectionHeader, SectionShell } from "@/components/section-shell";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useEffect, useState } from "react";
 
 const testimonials = [
   {
@@ -60,6 +63,18 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const isMobile = useIsMobile();
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [testimonialsPaused, setTestimonialsPaused] = useState(false);
+
+  useEffect(() => {
+    if (!isMobile || testimonialsPaused) return;
+    const timer = setInterval(() => {
+      setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [isMobile, testimonialsPaused]);
+
   return (
     <SectionShell id="testimonials" className="relative overflow-hidden">
       {/* Background accent */}
@@ -74,16 +89,85 @@ export default function Testimonials() {
           align="center"
         />
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative rounded-2xl border border-black/8 bg-white p-7 shadow-[0_1px_3px_rgba(16,24,40,0.07)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/8"
-            >
+        {isMobile ? (
+          <div className="relative mt-12 min-h-[320px] overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={testimonials[testimonialIndex].name}
+                initial={{ opacity: 0, x: 12 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -12 }}
+                transition={{ duration: 1.1, ease: "easeInOut" }}
+                className="group relative rounded-2xl border border-black/8 bg-white p-7 shadow-[0_1px_3px_rgba(16,24,40,0.07)]"
+              >
+                {/* Large decorative quote mark */}
+                <div
+                  className="absolute right-6 top-5 select-none font-serif text-7xl font-bold leading-none text-black/[0.04]"
+                  aria-hidden
+                >
+                  &ldquo;
+                </div>
+
+                {/* Result badge */}
+                <span className={`inline-flex items-center rounded-full ${testimonials[testimonialIndex].badgeBg} ${testimonials[testimonialIndex].badgeText} px-3 py-1 text-[10px] font-semibold uppercase tracking-wide`}>
+                  Verified client result: {testimonials[testimonialIndex].result}
+                </span>
+
+                <div className="relative z-10 mt-4 space-y-3 text-sm leading-relaxed text-foreground/80">
+                  <p>
+                    <span className="font-semibold text-foreground">Before:</span> {testimonials[testimonialIndex].before}
+                  </p>
+                  <p>
+                    <span className="font-semibold text-foreground">After:</span> {testimonials[testimonialIndex].after}
+                  </p>
+                </div>
+
+                <div className="mt-6 flex items-center gap-3 border-t border-black/6 pt-5">
+                  <div className={`flex h-9 w-9 items-center justify-center rounded-full ${testimonials[testimonialIndex].avatarBg} ${testimonials[testimonialIndex].avatarText} text-xs font-bold`}>
+                    {testimonials[testimonialIndex].avatar}
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-sm font-bold text-foreground">{testimonials[testimonialIndex].name}</div>
+                    <div className="text-xs text-muted-foreground">{testimonials[testimonialIndex].title}</div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground/80">{testimonials[testimonialIndex].companyMeta}</div>
+                  </div>
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, j) => (
+                      <Star key={j} size={11} className="fill-amber text-amber" />
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+            <div className="mt-3 flex justify-center gap-1.5">
+              {testimonials.map((item, index) => (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={() => {
+                    setTestimonialIndex(index);
+                    setTestimonialsPaused(true);
+                  }}
+                  aria-label={`View testimonial from ${item.name}`}
+                  aria-pressed={index === testimonialIndex}
+                  className={`h-1.5 rounded-full transition-all ${
+                    index === testimonialIndex ? "w-5 bg-amber" : "w-1.5 bg-black/15 hover:bg-black/30"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="mt-12 grid gap-5 sm:grid-cols-2">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative rounded-2xl border border-black/8 bg-white p-7 shadow-[0_1px_3px_rgba(16,24,40,0.07)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/8"
+              >
               {/* Large decorative quote mark */}
               <div
                 className="absolute right-6 top-5 font-serif text-7xl font-bold leading-none text-black/[0.04] select-none"
@@ -121,9 +205,10 @@ export default function Testimonials() {
                   ))}
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </SectionShell>
   );

@@ -90,7 +90,11 @@ function getFollowUpMessage(timeline: DecisionTimeline) {
   return "Request sent. We will send a roadmap-first follow-up so you can plan the right next step.";
 }
 
-export default function CTA() {
+type CTAProps = {
+  advancedMode?: boolean;
+};
+
+export default function CTA({ advancedMode = true }: CTAProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");
@@ -121,7 +125,7 @@ export default function CTA() {
       setStatusMessage("Pick your primary goal so we can tailor the plan.");
       return;
     }
-    if (!leadTimeline) {
+    if (advancedMode && !leadTimeline) {
       setStatus("error");
       setStatusMessage("Pick your decision timeline so we can tailor follow-up.");
       return;
@@ -148,7 +152,9 @@ export default function CTA() {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
       service: String(formData.get("service") ?? ""),
-      project: `[Decision timeline: ${leadTimeline}] ${projectNotes}`,
+      project: advancedMode
+        ? `[Decision timeline: ${leadTimeline}] ${projectNotes}`
+        : projectNotes,
       company: String(formData.get("company") ?? ""),
     };
 
@@ -183,7 +189,11 @@ export default function CTA() {
       }
 
       setStatus("success");
-      setStatusMessage(getFollowUpMessage(leadTimeline));
+      setStatusMessage(
+        advancedMode && leadTimeline
+          ? getFollowUpMessage(leadTimeline)
+          : "Request sent. We will reach out shortly."
+      );
       setStep(1);
       setLeadEmail("");
       setLeadGoal("");
@@ -225,21 +235,23 @@ export default function CTA() {
               launch with a clear first milestone.
             </p>
 
-            <div className="mt-6 rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                Plan Preview
-              </p>
-              <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                {planPreview.map((item) => (
-                  <div key={item.title} className="rounded-xl border border-black/8 bg-white p-3">
-                    <p className="text-xs font-semibold text-foreground">{item.title}</p>
-                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                      {item.detail}
-                    </p>
-                  </div>
-                ))}
+            {advancedMode ? (
+              <div className="mt-6 rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  Plan Preview
+                </p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                  {planPreview.map((item) => (
+                    <div key={item.title} className="rounded-xl border border-black/8 bg-white p-3">
+                      <p className="text-xs font-semibold text-foreground">{item.title}</p>
+                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                        {item.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            ) : null}
 
             <div className="mt-7 rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
@@ -312,26 +324,28 @@ export default function CTA() {
               </ul>
             </div>
 
-            <div className="mt-7 rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                Common Objections
-              </p>
-              <div className="mt-3 space-y-2">
-                {objections.map((item) => (
-                  <details
-                    key={item.question}
-                    className="rounded-lg border border-black/8 bg-white px-3 py-2.5"
-                  >
-                    <summary className="cursor-pointer text-sm font-medium text-foreground">
-                      {item.question}
-                    </summary>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {item.answer}
-                    </p>
-                  </details>
-                ))}
+            {advancedMode ? (
+              <div className="mt-7 rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  Common Objections
+                </p>
+                <div className="mt-3 space-y-2">
+                  {objections.map((item) => (
+                    <details
+                      key={item.question}
+                      className="rounded-lg border border-black/8 bg-white px-3 py-2.5"
+                    >
+                      <summary className="cursor-pointer text-sm font-medium text-foreground">
+                        {item.question}
+                      </summary>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {item.answer}
+                      </p>
+                    </details>
+                  ))}
+                </div>
               </div>
-            </div>
+            ) : null}
 
             <p className="mt-7 inline-flex items-center gap-2 rounded-lg border border-black/8 bg-white/80 px-4 py-2.5 text-xs text-muted-foreground shadow-sm">
               <ShieldCheck size={14} className="text-amber" />
@@ -382,22 +396,24 @@ export default function CTA() {
                   </select>
                 </div>
 
-                <div className="mt-4">
-                  <label htmlFor="lead-timeline" className="mb-2 block text-xs font-semibold text-foreground/70">
-                    Decision Timeline
-                  </label>
-                  <select
-                    id="lead-timeline"
-                    value={leadTimeline}
-                    onChange={(e) => setLeadTimeline(e.target.value as DecisionTimeline)}
-                    className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-muted-foreground outline-none transition focus:border-amber/40 focus:ring-2 focus:ring-amber/15"
-                  >
-                    <option value="">Pick a timeline...</option>
-                    <option value="under-30">Under 30 days</option>
-                    <option value="30-90">30-90 days</option>
-                    <option value="exploring">Just exploring for now</option>
-                  </select>
-                </div>
+                {advancedMode ? (
+                  <div className="mt-4">
+                    <label htmlFor="lead-timeline" className="mb-2 block text-xs font-semibold text-foreground/70">
+                      Decision Timeline
+                    </label>
+                    <select
+                      id="lead-timeline"
+                      value={leadTimeline}
+                      onChange={(e) => setLeadTimeline(e.target.value as DecisionTimeline)}
+                      className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-muted-foreground outline-none transition focus:border-amber/40 focus:ring-2 focus:ring-amber/15"
+                    >
+                      <option value="">Pick a timeline...</option>
+                      <option value="under-30">Under 30 days</option>
+                      <option value="30-90">30-90 days</option>
+                      <option value="exploring">Just exploring for now</option>
+                    </select>
+                  </div>
+                ) : null}
 
                 <button
                   type="button"

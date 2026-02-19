@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckCircle2, Users, Clock, ShieldCheck, Linkedin, ChevronDown } from "lucide-react";
 import { SectionHeader, SectionShell } from "@/components/section-shell";
 
@@ -198,6 +198,24 @@ const cardVariants = {
 
 export default function About() {
   const [expandedMembers, setExpandedMembers] = useState<Record<string, boolean>>({});
+  const [teamIndex, setTeamIndex] = useState(0);
+  const [teamCarouselMode, setTeamCarouselMode] = useState(false);
+  const [teamPaused, setTeamPaused] = useState(false);
+
+  useEffect(() => {
+    const update = () => setTeamCarouselMode(window.innerWidth < 1024);
+    update();
+    window.addEventListener("resize", update, { passive: true });
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  useEffect(() => {
+    if (!teamCarouselMode || teamPaused) return;
+    const timer = setInterval(() => {
+      setTeamIndex((prev) => (prev + 1) % team.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [teamCarouselMode, teamPaused]);
 
   return (
     <SectionShell id="about">
@@ -214,14 +232,60 @@ export default function About() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
-        className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        className="mt-10 lg:grid lg:grid-cols-4 lg:gap-4"
       >
-        {team.map((member) => (
-          <motion.article
-            key={member.name}
-            variants={cardVariants}
-            className={`group relative flex flex-col overflow-hidden rounded-2xl border border-black/8 bg-white p-6 shadow-[0_1px_3px_rgba(16,24,40,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/8 ${member.hoverBorder}`}
-          >
+        {teamCarouselMode ? (
+          <div className="relative overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.article
+                key={team[teamIndex].name}
+                initial={{ opacity: 0, x: 14 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -14 }}
+                transition={{ duration: 1.1, ease: "easeInOut" }}
+                className={`group relative flex flex-col overflow-hidden rounded-2xl border border-black/8 bg-white p-6 shadow-[0_1px_3px_rgba(16,24,40,0.07)] ${team[teamIndex].hoverBorder}`}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${team[teamIndex].hoverGlow} to-transparent`} />
+                {team[teamIndex].isFounder && (
+                  <span className="absolute right-4 top-4 z-10 rounded-full bg-amber-muted px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-amber">
+                    Founder
+                  </span>
+                )}
+                <div
+                  className={`relative z-10 h-14 w-14 rounded-2xl bg-gradient-to-br ${team[teamIndex].gradient} flex items-center justify-center shadow-md ring-4 ${team[teamIndex].ringColor}`}
+                >
+                  <span className="text-lg font-bold text-white">{team[teamIndex].initials}</span>
+                </div>
+                <div className="relative z-10 mt-4 flex-1">
+                  <h3 className="text-base font-bold text-foreground">{team[teamIndex].name}</h3>
+                  <p className="mt-0.5 text-sm font-medium text-muted-foreground">{team[teamIndex].role}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{team[teamIndex].bio}</p>
+                </div>
+              </motion.article>
+            </AnimatePresence>
+            <div className="mt-3 flex justify-center gap-1.5">
+              {team.map((member, index) => (
+                <button
+                  key={member.name}
+                  type="button"
+                  onClick={() => {
+                    setTeamIndex(index);
+                    setTeamPaused(true);
+                  }}
+                  aria-label={`View ${member.name}`}
+                  aria-pressed={index === teamIndex}
+                  className={`h-1.5 rounded-full transition-all ${index === teamIndex ? "w-5 bg-amber" : "w-1.5 bg-black/15 hover:bg-black/30"}`}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          team.map((member) => (
+            <motion.article
+              key={member.name}
+              variants={cardVariants}
+              className={`group relative flex min-w-[82%] first:ml-0.5 last:mr-0.5 flex-col overflow-hidden rounded-2xl border border-black/8 bg-white p-6 shadow-[0_1px_3px_rgba(16,24,40,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/8 lg:min-w-0 lg:first:ml-0 lg:last:mr-0 ${member.hoverBorder}`}
+            >
             <div className={`absolute inset-0 bg-gradient-to-br ${member.hoverGlow} to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
             {/* Founder badge */}
             {member.isFounder && (
@@ -312,8 +376,9 @@ export default function About() {
                 </a>
               </div>
             )}
-          </motion.article>
-        ))}
+            </motion.article>
+          ))
+        )}
       </motion.div>
 
       {/* ── Why Us + Our Process ── */}
@@ -360,36 +425,61 @@ export default function About() {
             title="Four steps, zero surprises"
             description="You get weekly progress, clear milestones, and direct communication from kickoff through post-launch."
           />
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="relative mt-8 space-y-3"
-          >
-            <div className="absolute left-[1.85rem] top-10 bottom-10 w-px bg-gradient-to-b from-black/8 via-black/6 to-transparent" />
+          <div className="relative mt-8">
+            {/* SVG winding path */}
+            <svg
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="pathGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.35" />
+                  <stop offset="33%" stopColor="#8b5cf6" stopOpacity="0.35" />
+                  <stop offset="66%" stopColor="#f59e0b" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#22c55e" stopOpacity="0.35" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M 7 11 C 7 24 93 24 93 37 C 93 50 7 50 7 63 C 7 76 93 76 93 89"
+                fill="none"
+                stroke="url(#pathGrad)"
+                strokeWidth="2.5"
+                strokeDasharray="4 3"
+                strokeLinecap="round"
+              />
+            </svg>
 
-            {processSteps.map((step) => (
-              <article
-                key={step.step}
-                className={`group relative flex gap-4 overflow-hidden rounded-2xl border border-black/8 bg-white p-5 shadow-[0_1px_3px_rgba(16,24,40,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${step.hoverBorder}`}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${step.hoverGlow} to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
-                <div className="relative shrink-0">
-                  <div className={`flex h-9 w-9 items-center justify-center rounded-xl bg-white border border-black/8 shadow-sm font-mono text-sm font-bold ${step.accent}`}>
-                    {step.step}
+            {processSteps.map((step, index) => {
+              const isRight = index % 2 === 1;
+              return (
+                <motion.div
+                  key={step.step}
+                  initial={{ opacity: 0, x: isRight ? 16 : -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: index * 0.12 }}
+                  className={`relative flex items-center gap-3 mb-5 last:mb-0 ${isRight ? "flex-row-reverse" : ""}`}
+                >
+                  {/* Map waypoint badge */}
+                  <div
+                    className={`relative z-10 flex-shrink-0 h-12 w-12 rounded-2xl ${step.pinBg} flex items-center justify-center shadow-lg ${step.pinShadow} ring-4 ring-white`}
+                  >
+                    <span className="font-mono text-sm font-black text-white">{step.step}</span>
                   </div>
-                  <div className={`absolute -right-[0.65rem] top-1/2 h-2 w-2 -translate-y-1/2 rounded-full ${step.dot} ring-2 ring-white`} />
-                </div>
-                <div className="relative z-10 pt-0.5">
-                  <h3 className="text-base font-semibold text-foreground">{step.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                    {step.description}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </motion.div>
+
+                  {/* Content card */}
+                  <article className="relative z-10 flex-1 rounded-2xl border border-black/8 bg-white p-4 shadow-[0_1px_3px_rgba(16,24,40,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+                    <h3 className="text-base font-semibold text-foreground">{step.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                      {step.description}
+                    </p>
+                  </article>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
 
       </div>

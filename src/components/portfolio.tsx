@@ -9,6 +9,46 @@ const categories = ["All", "Web Apps", "Websites", "AI Solutions"] as const;
 
 const projects = [
   {
+    title: "Law Firm Website Builder",
+    category: "Websites",
+    description:
+      "Conversion-focused legal services website template with trust-first messaging, strong call routing, and structured lead capture.",
+    tags: ["Next.js", "Tailwind", "Vercel"],
+    image: "linear-gradient(135deg, #11233f 0%, #24416f 45%, #3b6299 100%)",
+    shimmer: "rgba(120, 165, 255, 0.35)",
+    metrics: "Service Funnel UX",
+    categoryColor: "text-blue-500",
+    timeline: "Sample artifact",
+    challenge: "Create a legal-services layout that builds trust fast and drives qualified consult requests.",
+    approach: "Structured hero proof, clear service pathways, and CTA placement designed for high-intent local traffic.",
+    outcomes: [
+      "Clear trust-first structure above the fold",
+      "Stronger consultation CTA visibility across sections",
+      "Improved service-page scannability for legal buyers",
+    ],
+    liveUrl: "https://law-firm-website-builder.vercel.app/",
+  },
+  {
+    title: "Modern Engaging Web App",
+    category: "Web Apps",
+    description:
+      "Interactive web app experience demonstrating modern UX patterns for activation and engagement across key product flows.",
+    tags: ["React", "Next.js", "Framer Motion"],
+    image: "linear-gradient(135deg, #2a1d0f 0%, #5a3d1e 45%, #8b5d2a 100%)",
+    shimmer: "rgba(232, 175, 95, 0.35)",
+    metrics: "Product UX Flow",
+    categoryColor: "text-amber",
+    timeline: "Sample artifact",
+    challenge: "Show modern interaction patterns without sacrificing speed or conversion clarity.",
+    approach: "Combined progressive disclosure, intentional motion, and clear action hierarchy to keep users moving.",
+    outcomes: [
+      "Higher perceived product quality through polished interaction design",
+      "Improved focus on primary user actions",
+      "Reusable engagement patterns for future product builds",
+    ],
+    liveUrl: "https://modern-engaging-web-app.vercel.app/",
+  },
+  {
     title: "FinTrack Dashboard",
     category: "Web Apps",
     description:
@@ -127,8 +167,11 @@ const projects = [
 export default function Portfolio() {
   const [active, setActive] = useState<(typeof categories)[number]>("All");
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
+  const [expanded, setExpanded] = useState(false);
   const filtered =
     active === "All" ? projects : projects.filter((p) => p.category === active);
+  const visibleProjects = expanded ? filtered : filtered.slice(0, 3);
+  const canExpand = filtered.length > 3;
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -137,6 +180,10 @@ export default function Portfolio() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  useEffect(() => {
+    setExpanded(false);
+  }, [active]);
 
   return (
     <SectionShell id="work" className="relative overflow-hidden">
@@ -158,12 +205,13 @@ export default function Portfolio() {
             transition={{ duration: 0.5 }}
             className="w-full md:w-auto"
           >
-            <div className="flex gap-1 rounded-xl border border-black/8 bg-white p-1 shadow-sm">
+            <div className="-mx-1 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+              <div className="inline-flex min-w-max gap-1 rounded-xl border border-black/8 bg-white p-1 shadow-sm">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActive(cat)}
-                  className={`rounded-lg px-4 py-2 text-xs font-semibold transition-all duration-200 ${
+                  className={`whitespace-nowrap rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200 sm:px-4 ${
                     active === cat
                       ? "bg-amber text-white shadow-sm shadow-amber/25"
                       : "text-muted-foreground hover:bg-black/[0.03] hover:text-foreground"
@@ -172,13 +220,14 @@ export default function Portfolio() {
                   {cat}
                 </button>
               ))}
+              </div>
             </div>
           </motion.div>
         </div>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
-            {filtered.map((project) => (
+            {visibleProjects.map((project) => (
               <motion.article
                 layout
                 key={project.title}
@@ -261,6 +310,18 @@ export default function Portfolio() {
             ))}
           </AnimatePresence>
         </div>
+
+        {canExpand ? (
+          <div className="mt-8 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setExpanded((prev) => !prev)}
+              className="rounded-xl border border-black/10 bg-white px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-amber/30 hover:text-amber"
+            >
+              {expanded ? "Show fewer case studies" : `Show all case studies (${filtered.length})`}
+            </button>
+          </div>
+        ) : null}
       </div>
 
       <AnimatePresence>
@@ -275,11 +336,11 @@ export default function Portfolio() {
               aria-label="Close case study overlay"
             />
             <motion.aside
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 24 }}
               transition={{ duration: 0.25 }}
-              className="fixed right-0 top-0 z-[60] h-full w-full max-w-xl overflow-y-auto border-l border-black/10 bg-white p-6 shadow-2xl shadow-black/20 sm:p-8"
+              className="fixed inset-x-0 bottom-0 z-[60] h-[88vh] overflow-y-auto rounded-t-2xl border border-black/10 bg-white p-5 shadow-2xl shadow-black/20 sm:right-0 sm:top-0 sm:h-full sm:max-w-xl sm:rounded-none sm:border-l sm:p-8"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -289,10 +350,21 @@ export default function Portfolio() {
                   <h3 className="mt-2 text-2xl font-bold tracking-tight text-foreground">
                     {selectedProject.title}
                   </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Timeline: {selectedProject.timeline}
-                  </p>
-                </div>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      Timeline: {selectedProject.timeline}
+                    </p>
+                    {selectedProject.liveUrl ? (
+                      <a
+                        href={selectedProject.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-amber transition hover:text-orange-600"
+                      >
+                        Open live project
+                        <ExternalLink size={12} />
+                      </a>
+                    ) : null}
+                  </div>
                 <button
                   onClick={() => setSelectedProject(null)}
                   className="rounded-lg border border-black/10 bg-white p-2 text-muted-foreground transition hover:text-foreground"
