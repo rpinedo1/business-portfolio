@@ -8,10 +8,10 @@ import { scrollToSection } from "@/lib/scroll-to-section";
 const services = [
   {
     icon: Globe,
-    title: "Web Applications",
+    title: "Launch Revenue Features",
     description:
-      "SaaS platforms, dashboards, and internal tools — built with React and Node.js to handle thousands of users without breaking a sweat.",
-    features: ["React / Next.js", "Scalable APIs", "Real-time"],
+      "We build custom web apps and customer flows that help you close deals faster and reduce manual admin work.",
+    features: ["Sales Flows", "Custom Dashboards", "Automation-Ready"],
     color: "from-blue-500/15 to-blue-400/5",
     iconBg: "bg-blue-50",
     iconColor: "text-blue-500",
@@ -19,10 +19,10 @@ const services = [
   },
   {
     icon: Smartphone,
-    title: "Websites & Landing Pages",
+    title: "Get More Leads",
     description:
-      "Fast-loading, SEO-optimized websites designed around one goal: turning your visitors into leads and your leads into customers.",
-    features: ["Responsive", "SEO-Ready", "CMS Built-in"],
+      "We redesign key pages so visitors quickly understand what you offer and book calls instead of bouncing.",
+    features: ["Clear Messaging", "Mobile-First", "High-Intent CTAs"],
     color: "from-violet-500/15 to-violet-400/5",
     iconBg: "bg-violet-50",
     iconColor: "text-violet-500",
@@ -30,10 +30,10 @@ const services = [
   },
   {
     icon: Brain,
-    title: "AI-Powered Products",
+    title: "Save Time With AI",
     description:
-      "Custom AI agents, chatbots, and automation tools that save your team hours every week and give your users a smarter experience.",
-    features: ["Custom Agents", "NLP & Chat", "Data Pipelines"],
+      "We automate repetitive tasks like lead follow-up, support replies, and reporting so your team can focus on growth.",
+    features: ["Lead Follow-Up", "Support Automation", "Auto Reporting"],
     color: "from-amber/15 to-amber/5",
     iconBg: "bg-amber-muted",
     iconColor: "text-amber",
@@ -43,8 +43,8 @@ const services = [
     icon: Code,
     title: "Custom Integrations",
     description:
-      "APIs, third-party hookups, and backend logic that connects your tools and automates the workflows slowing your team down.",
-    features: ["REST / GraphQL", "Webhooks", "Automation"],
+      "We connect your CRM, website, and internal tools so data moves automatically and your team stops copying things by hand.",
+    features: ["CRM Sync", "Tool Connections", "Workflow Automation"],
     color: "from-cyan-500/15 to-cyan-400/5",
     iconBg: "bg-cyan-50",
     iconColor: "text-cyan-600",
@@ -52,10 +52,10 @@ const services = [
   },
   {
     icon: Zap,
-    title: "Performance Audits",
+    title: "Fix Slow Pages",
     description:
-      "Slow sites lose customers. We audit your Core Web Vitals, cut load times, and fix the bottlenecks costing you conversions.",
-    features: ["Core Web Vitals", "Speed Optimization", "Code Splitting"],
+      "Slow websites leak revenue. We speed up your highest-traffic pages so more people stay, click, and convert.",
+    features: ["Speed Audit", "Faster Load Times", "Conversion Fixes"],
     color: "from-green-500/15 to-green-400/5",
     iconBg: "bg-green-50",
     iconColor: "text-green-600",
@@ -63,10 +63,10 @@ const services = [
   },
   {
     icon: BarChart3,
-    title: "Growth & Analytics",
+    title: "Track What Makes Money",
     description:
-      "Analytics setup, A/B tests, and conversion tracking so you know exactly what's working — and can double down on it.",
-    features: ["Analytics", "A/B Testing", "Conversion Tracking"],
+      "We set up clear dashboards and tests so you know which pages, campaigns, and automations are driving real revenue.",
+    features: ["Revenue Tracking", "A/B Tests", "Simple Dashboards"],
     color: "from-rose-500/15 to-rose-400/5",
     iconBg: "bg-rose-50",
     iconColor: "text-rose-500",
@@ -89,8 +89,8 @@ export default function Services() {
     <SectionShell id="services">
       <SectionHeader
         eyebrow="What We Build"
-        title="Services designed for speed, clarity, and growth"
-        description="We combine product strategy, clean design, and reliable engineering to deliver outcomes your team can measure."
+        title="Simple services focused on leads, sales, and time savings"
+        description="Pick the outcome you want most. We design and build the fastest path to get there."
       />
 
       <motion.div
@@ -149,7 +149,7 @@ export default function Services() {
           }}
           className="group inline-flex items-center gap-2 rounded-xl bg-amber px-8 py-3.5 text-sm font-semibold text-white shadow-md shadow-amber/25 transition hover:brightness-105 hover:shadow-lg hover:shadow-amber/30"
         >
-          Get My 30-Min Build Plan
+          Get My Free Growth Plan
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
         </a>
       </motion.div>

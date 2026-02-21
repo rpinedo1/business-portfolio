@@ -6,10 +6,10 @@ import { ArrowRight, Calendar, CheckCircle2, ChevronDown, ShieldCheck } from "lu
 import { SectionShell } from "@/components/section-shell";
 
 const benefits = [
-  "30-minute strategy call focused on your current bottleneck",
-  "Build plan with scope, timeline, and budget range",
-  "Clear first milestone you can execute immediately",
-  "Direct access to the team doing the implementation",
+  "Free 30-minute strategy call focused on your biggest growth blocker",
+  "Simple action plan with timeline and budget range",
+  "One clear first step you can start right away",
+  "Direct access to the team building your project",
 ];
 
 type ProjectType = "webapp" | "website" | "ai";
@@ -19,32 +19,32 @@ type DecisionTimeline = "under-30" | "30-90" | "exploring";
 
 const planPreview = [
   {
-    title: "Scope Snapshot",
-    detail: "Prioritized feature list tied to business outcomes.",
+    title: "What to Build First",
+    detail: "The highest-impact changes to grow revenue or save time.",
   },
   {
-    title: "Sprint Timeline",
-    detail: "Week-by-week rollout plan with milestone checkpoints.",
+    title: "Timeline",
+    detail: "A simple week-by-week rollout with clear milestones.",
   },
   {
-    title: "Budget Logic",
-    detail: "Range estimate with the assumptions behind it.",
+    title: "Budget Range",
+    detail: "A clear range based on your goals, scope, and timeline.",
   },
 ];
 
 const objections = [
   {
-    question: "What budget range should we expect?",
+    question: "How much does this usually cost?",
     answer:
       "Most engagements start in the $8k-$35k range depending on scope, urgency, and integration complexity. You get a transparent range with assumptions in the call.",
   },
   {
-    question: "Do we need full specs before starting?",
+    question: "How soon can we start?",
     answer:
-      "No. Week 1 is for scoping and architecture validation so you can make decisions with less risk before committing to full build.",
+      "Most projects can start within 1-2 weeks. If your timeline is urgent, we can prioritize discovery and kickoff faster.",
   },
   {
-    question: "How much internal bandwidth is required?",
+    question: "How much of our time will this take?",
     answer:
       "Usually 1 stakeholder for weekly reviews and quick feedback. We keep async updates tight to avoid draining your team.",
   },
@@ -66,9 +66,9 @@ function isValidEmail(email: string) {
 
 function getEstimate(projectType: ProjectType, urgency: Urgency, traffic: Traffic) {
   const base = {
-    webapp: { low: 18, high: 35, milestone: "Scope core flows and ship an MVP sprint plan." },
-    website: { low: 8, high: 18, milestone: "Lock messaging and redesign the highest-intent pages first." },
-    ai: { low: 14, high: 30, milestone: "Define one AI workflow with measurable ROI and ship a pilot." },
+    webapp: { low: 18, high: 35, milestone: "Build the sales or ops flow that creates the biggest business impact first." },
+    website: { low: 8, high: 18, milestone: "Improve messaging and page structure so more visitors become qualified leads." },
+    ai: { low: 14, high: 30, milestone: "Automate one high-volume workflow to save time and increase team output." },
   }[projectType];
 
   const urgencyAdj = urgency === "rush" ? 8 : urgency === "soon" ? 4 : 0;
@@ -85,7 +85,7 @@ function getFollowUpMessage(timeline: DecisionTimeline) {
     return "Request sent. High-priority lead noted. We will send available slots today.";
   }
   if (timeline === "30-90") {
-    return "Request sent. We will share your build plan and scheduling options shortly.";
+    return "Request sent. We will share your growth plan and scheduling options shortly.";
   }
   return "Request sent. We will send a roadmap-first follow-up so you can plan the right next step.";
 }
@@ -229,11 +229,10 @@ export default function CTA({ advancedMode = true }: CTAProps) {
               Next kickoff window: March 18, 2026
             </span>
             <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-              Get your 30-minute build plan
+              Get your free 30-minute growth plan
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Bring your goals and constraints. We&apos;ll map the fastest path to
-              launch with a clear first milestone.
+              Tell us your goal. We&apos;ll show the fastest way to get more leads or save time, with a clear budget range.
             </p>
           </div>
 
@@ -274,9 +273,9 @@ export default function CTA({ advancedMode = true }: CTAProps) {
                     className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-muted-foreground outline-none transition focus:border-amber/40 focus:ring-2 focus:ring-amber/15"
                   >
                     <option value="">Pick a goal...</option>
-                    <option value="increase-leads">Increase qualified leads</option>
-                    <option value="ship-product">Ship a new product fast</option>
-                    <option value="automate-ops">Automate support or operations</option>
+                    <option value="increase-leads">Get more leads</option>
+                    <option value="automate-ops">Save time with automation</option>
+                    <option value="ship-product">Launch a new website or app</option>
                     <option value="improve-conversion">Improve conversion rate</option>
                   </select>
                 </div>
@@ -305,7 +304,7 @@ export default function CTA({ advancedMode = true }: CTAProps) {
                   onClick={handleContinue}
                   className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-amber px-8 py-3.5 text-sm font-semibold text-white shadow-md shadow-amber/25 transition hover:brightness-105 hover:shadow-lg hover:shadow-amber/30"
                 >
-                  Continue to Build Plan Details
+                  Continue
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
@@ -362,7 +361,7 @@ export default function CTA({ advancedMode = true }: CTAProps) {
                     disabled={isSubmitting}
                     className="group inline-flex w-2/3 items-center justify-center gap-2 rounded-xl bg-amber px-8 py-3 text-sm font-semibold text-white shadow-md shadow-amber/25 transition hover:brightness-105 hover:shadow-lg hover:shadow-amber/30 disabled:cursor-not-allowed disabled:opacity-75"
                   >
-                    {isSubmitting ? "Sending..." : "Send Me the Build Plan"}
+                    {isSubmitting ? "Sending..." : "Send Me My Growth Plan"}
                     <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                   </button>
                 </div>
@@ -478,7 +477,7 @@ export default function CTA({ advancedMode = true }: CTAProps) {
               </div>
               <div className="mt-4 rounded-xl border border-amber/25 bg-amber/[0.08] p-3">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-amber">
-                  Typical engagement range
+                  Typical investment range
                 </p>
                 <p className="mt-1 text-lg font-bold text-foreground">{estimate.range}</p>
                 <p className="mt-1.5 text-sm text-muted-foreground">{estimate.milestone}</p>

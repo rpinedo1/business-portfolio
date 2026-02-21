@@ -7,32 +7,47 @@ import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const proofItems = [
-  { label: "Projects delivered", value: "50+" },
-  { label: "Avg. launch time", value: "8.2 weeks" },
-  { label: "Client retention", value: "78%" },
-  { label: "Response time", value: "<2 business hours" },
+  { label: "Projects shipped", value: "50+" },
+  { label: "Avg. launch", value: "8.2 weeks" },
+  { label: "Clients who stay", value: "78%" },
+  { label: "Avg. response", value: "<2 business hours" },
 ];
+
+const researchLinks = [
+  {
+    label: "SMBs using AI report stronger growth",
+    href: "https://www.salesforce.com/news/stories/smbs-ai-trends-2025/",
+  },
+  {
+    label: "U.S. small business AI adoption trends",
+    href: "https://www.uschamber.com/technology/empowering-small-business-the-impact-of-technology-on-u-s-small-business",
+  },
+  {
+    label: "AI productivity study (NBER)",
+    href: "https://www.nber.org/papers/w31161",
+  },
+] as const;
 
 const heroCopy = {
   default: {
     badge: "Next kickoff window: March 18, 2026",
-    title: "We build revenue-focused web apps and AI workflows for B2B teams in 6-10 weeks",
-    body: "Typical outcomes: faster sales cycles, lower support load, and measurable conversion lift within 90 days.",
+    title: "Get a website or AI system that helps you make more money and save more time",
+    body: "We help small businesses turn traffic into booked calls and automate repetitive work in 6-10 weeks.",
   },
   ai: {
     badge: "AI build sprint starts March 18, 2026",
-    title: "Cut support workload with production-safe AI workflows",
-    body: "From scoped RAG assistants to internal automations, we ship secure AI systems that reduce response times and free up your team.",
+    title: "Use AI to grow faster without hiring a bigger team",
+    body: "We build practical AI automations that help small businesses close more leads, save hours each week, and improve customer response speed.",
   },
   web: {
     badge: "Website sprint starts March 18, 2026",
-    title: "Increase qualified pipeline from your existing traffic",
-    body: "Messaging, UX, and implementation are built as one system so your site drives qualified inquiries, not vanity metrics.",
+    title: "Turn more website visitors into real sales calls",
+    body: "We simplify your message and page flow so your site creates more qualified leads from the traffic you already have.",
   },
   app: {
     badge: "Product sprint starts March 18, 2026",
-    title: "Ship conversion-critical product features in weeks",
-    body: "We prioritize the highest-impact workflows, ship fast, and instrument outcomes so product work translates into business growth.",
+    title: "Launch product features your customers will actually use",
+    body: "We build and ship high-impact features fast, then track what drives signups, upgrades, and revenue.",
   },
 } as const;
 
@@ -99,7 +114,7 @@ function HeroVisualControl() {
         style={{ rotate: "2deg" }}
       >
         <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">Primary CTA</p>
-        <p className="mt-1.5 text-sm font-semibold text-foreground">Get Build Plan</p>
+        <p className="mt-1.5 text-sm font-semibold text-foreground">Get Free Growth Plan</p>
         <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
           Clear next step and immediate value framing.
         </p>
@@ -137,14 +152,14 @@ function HeroVisualCreative() {
               Offer
             </p>
             <p className="mt-1.5 text-base font-semibold text-foreground">
-              Get a 30-minute build plan with scope, timeline, and budget range.
+              Get a free 30-minute growth plan with next steps and budget range.
             </p>
             <div className="mt-3 flex items-center gap-2">
               <div className="inline-flex items-center gap-1.5 rounded-lg bg-amber px-3 py-1.5 text-xs font-semibold text-white">
                 <MousePointerClick size={12} />
-                Get Build Plan
+                Get Growth Plan
               </div>
-              <span className="text-[11px] text-muted-foreground">No pitch deck</span>
+              <span className="text-[11px] text-muted-foreground">No pressure</span>
             </div>
           </div>
 
@@ -304,10 +319,24 @@ export default function Hero({
               className="font-bold tracking-tight"
               style={{ fontSize: "clamp(2rem, 8vw, 4.5rem)", lineHeight: 1.05 }}
             >
-              {content.title.split(" ").slice(0, -2).join(" ")}{" "}
-              <span className="bg-gradient-to-r from-amber via-orange-500 to-amber bg-clip-text text-transparent">
-                {content.title.split(" ").slice(-2).join(" ")}
-              </span>
+              {content.title.includes("make more money") && content.title.includes("and save more time") ? (
+                <>
+                  {content.title.split("make more money")[0]}
+                  <span className="text-amber">make more money</span>
+                  {content.title
+                    .split("make more money")[1]
+                    .split("and save more time")[0]}
+                  <span className="text-amber">and save more time</span>
+                  {content.title.split("and save more time")[1]}
+                </>
+              ) : (
+                <>
+                  {content.title.split(" ").slice(0, -2).join(" ")}{" "}
+                  <span className="bg-gradient-to-r from-amber via-orange-500 to-amber bg-clip-text text-transparent">
+                    {content.title.split(" ").slice(-2).join(" ")}
+                  </span>
+                </>
+              )}
             </motion.h1>
 
             <motion.p
@@ -331,9 +360,9 @@ export default function Hero({
                 </p>
                 <div className="mt-3 flex flex-wrap justify-center gap-2 lg:justify-start">
                   {[
-                    "B2B teams with existing demand",
-                    "Need launch in 6-10 weeks",
-                    "Need measurable conversion or support impact",
+                    "Small businesses ready to grow",
+                    "Need more leads from current traffic",
+                    "Want to save time with AI automation",
                   ].map((fit) => (
                     <span
                       key={fit}
@@ -344,7 +373,7 @@ export default function Hero({
                   ))}
                 </div>
                 <p className="mt-2.5 text-xs text-muted-foreground">
-                  Not ideal if you need full-time staff augmentation only.
+                  Not ideal if you only want temporary staff augmentation.
                 </p>
               </motion.div>
             ) : null}
@@ -364,7 +393,7 @@ export default function Hero({
                 }}
                 className="group inline-flex items-center gap-2 rounded-xl bg-amber px-8 py-3.5 text-sm font-semibold text-white shadow-md shadow-amber/25 transition hover:brightness-105 hover:shadow-lg hover:shadow-amber/30"
               >
-                Get My 30-Min Build Plan
+                Get My Free Growth Plan
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
               <a
@@ -379,7 +408,7 @@ export default function Hero({
               </a>
             </motion.div>
             <p className="mt-3 text-xs text-muted-foreground">
-              You&apos;ll leave with scope, timeline, and budget range. No pitch deck.
+              You&apos;ll leave with a clear plan and budget range. No pressure.
             </p>
 
             {isMobile ? (
@@ -442,6 +471,20 @@ export default function Hero({
                 <p className="text-xs text-muted-foreground">
                   Based on our last 18 client engagements (2024-2026).
                 </p>
+                <div className="mt-2 flex flex-wrap items-center gap-2">
+                  <span className="text-[11px] font-medium text-muted-foreground">Research-backed:</span>
+                  {researchLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[11px] font-medium text-amber underline decoration-amber/40 underline-offset-2 transition hover:text-orange-600"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
                 <details className="mt-1 text-xs text-muted-foreground">
                   <summary className="cursor-pointer font-medium text-foreground/80">
                     How we calculate this
@@ -493,6 +536,20 @@ export default function Hero({
             <p className="text-xs text-muted-foreground">
               Based on our last 18 client engagements (2024-2026).
             </p>
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <span className="text-[11px] font-medium text-muted-foreground">Research-backed:</span>
+              {researchLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[11px] font-medium text-amber underline decoration-amber/40 underline-offset-2 transition hover:text-orange-600"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
             <details className="mt-1 text-xs text-muted-foreground">
               <summary className="cursor-pointer font-medium text-foreground/80">
                 How we calculate this
