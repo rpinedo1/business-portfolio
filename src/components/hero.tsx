@@ -261,7 +261,7 @@ export default function Hero({
     if (!isMobile) return;
     const timer = setInterval(() => {
       setProofIndex((prev) => (prev + 1) % proofItems.length);
-    }, 5000);
+    }, 3500);
     return () => clearInterval(timer);
   }, [isMobile]);
 
@@ -387,7 +387,7 @@ export default function Hero({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.5 }}
-                className="relative mt-10 min-h-[132px]"
+                className="relative mt-10 min-h-[132px] lg:hidden"
               >
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -416,7 +416,7 @@ export default function Hero({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.5 }}
-                className="mt-10 grid gap-3 lg:grid-cols-2"
+                className="mt-10 grid gap-3 lg:hidden"
               >
                 {proofItems.map((item) => (
                   <div
@@ -438,7 +438,7 @@ export default function Hero({
               </motion.div>
             )}
             {showCroBlocks ? (
-              <div className="mt-3">
+              <div className="mt-3 lg:hidden">
                 <p className="text-xs text-muted-foreground">
                   Based on our last 18 client engagements (2024-2026).
                 </p>
@@ -465,6 +465,45 @@ export default function Hero({
             {visualVariant === "control" ? <HeroVisualControl /> : <HeroVisualCreative />}
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.52 }}
+          className="mt-10 hidden lg:grid lg:grid-cols-4 lg:gap-3"
+        >
+          {proofItems.map((item) => (
+            <div
+              key={`desktop-${item.label}`}
+              className="group relative overflow-hidden rounded-2xl border border-black/8 bg-white/80 p-4 text-left shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-amber/[0.08] via-transparent to-blue-100/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="relative z-10">
+                <span className="inline-block h-1.5 w-8 rounded-full bg-amber/70" />
+                <p className="mt-2 text-2xl font-bold tracking-tight text-amber">{item.value}</p>
+                <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-muted-foreground">
+                  {item.label}
+                </p>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+        {showCroBlocks ? (
+          <div className="mt-3 hidden lg:block">
+            <p className="text-xs text-muted-foreground">
+              Based on our last 18 client engagements (2024-2026).
+            </p>
+            <details className="mt-1 text-xs text-muted-foreground">
+              <summary className="cursor-pointer font-medium text-foreground/80">
+                How we calculate this
+              </summary>
+              <p className="mt-1.5 max-w-xl leading-relaxed">
+                Metrics are aggregated from project close-out reports and post-launch check-ins.
+                Time-based metrics use kickoff-to-live dates. Response metrics come from client communication logs.
+              </p>
+            </details>
+          </div>
+        ) : null}
       </div>
 
       {/* Bottom fade */}

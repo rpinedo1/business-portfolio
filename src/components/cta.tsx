@@ -2,7 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, CheckCircle2, ShieldCheck } from "lucide-react";
+import { ArrowRight, Calendar, CheckCircle2, ChevronDown, ShieldCheck } from "lucide-react";
 import { SectionShell } from "@/components/section-shell";
 
 const benefits = [
@@ -102,6 +102,7 @@ export default function CTA({ advancedMode = true }: CTAProps) {
   const [leadEmail, setLeadEmail] = useState("");
   const [leadGoal, setLeadGoal] = useState("");
   const [leadTimeline, setLeadTimeline] = useState<DecisionTimeline | "">("");
+  const [openObjection, setOpenObjection] = useState<string | null>(objections[0]?.question ?? null);
 
   const [projectType, setProjectType] = useState<ProjectType>("webapp");
   const [urgency, setUrgency] = useState<Urgency>("normal");
@@ -221,8 +222,8 @@ export default function CTA({ advancedMode = true }: CTAProps) {
         <div className="pointer-events-none absolute bottom-0 left-10 h-64 w-64 rounded-full bg-blue-300/20 blur-3xl" />
         <div className="pointer-events-none absolute inset-0 grid-pattern opacity-60" />
 
-        <div className="relative z-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <div>
+        <div className="relative z-10 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="lg:col-start-1 lg:row-start-1">
             <span className="inline-flex items-center gap-2 rounded-full border border-amber/30 bg-amber-muted px-4 py-1.5 text-xs font-semibold text-amber">
               <Calendar size={12} />
               Next kickoff window: March 18, 2026
@@ -234,129 +235,13 @@ export default function CTA({ advancedMode = true }: CTAProps) {
               Bring your goals and constraints. We&apos;ll map the fastest path to
               launch with a clear first milestone.
             </p>
-
-            {advancedMode ? (
-              <div className="mt-6 rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                  Plan Preview
-                </p>
-                <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                  {planPreview.map((item) => (
-                    <div key={item.title} className="rounded-xl border border-black/8 bg-white p-3">
-                      <p className="text-xs font-semibold text-foreground">{item.title}</p>
-                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                        {item.detail}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            <div className="mt-7 rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                Fit Estimator
-              </p>
-              <div className="mt-4 grid gap-3">
-                <label className="text-xs font-semibold text-foreground/70">
-                  Project type
-                  <select
-                    value={projectType}
-                    onChange={(e) => setProjectType(e.target.value as ProjectType)}
-                    className="mt-1.5 w-full rounded-xl border border-black/10 bg-white px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-amber/40 focus:ring-2 focus:ring-amber/15"
-                  >
-                    <option value="webapp">Web Application</option>
-                    <option value="website">Website or Landing Page</option>
-                    <option value="ai">AI Product or Integration</option>
-                  </select>
-                </label>
-                <label className="text-xs font-semibold text-foreground/70">
-                  Urgency
-                  <select
-                    value={urgency}
-                    onChange={(e) => setUrgency(e.target.value as Urgency)}
-                    className="mt-1.5 w-full rounded-xl border border-black/10 bg-white px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-amber/40 focus:ring-2 focus:ring-amber/15"
-                  >
-                    <option value="normal">Normal (4-8 weeks)</option>
-                    <option value="soon">Soon (2-4 weeks)</option>
-                    <option value="rush">Rush (under 2 weeks)</option>
-                  </select>
-                </label>
-                <label className="text-xs font-semibold text-foreground/70">
-                  Monthly visitors or active users
-                  <select
-                    value={traffic}
-                    onChange={(e) => setTraffic(e.target.value as Traffic)}
-                    className="mt-1.5 w-full rounded-xl border border-black/10 bg-white px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-amber/40 focus:ring-2 focus:ring-amber/15"
-                  >
-                    <option value="low">Under 10k</option>
-                    <option value="mid">10k-100k</option>
-                    <option value="high">100k+</option>
-                  </select>
-                </label>
-              </div>
-              <div className="mt-4 rounded-xl border border-amber/25 bg-amber/[0.08] p-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-amber">
-                  Typical engagement range
-                </p>
-                <p className="mt-1 text-lg font-bold text-foreground">{estimate.range}</p>
-                <p className="mt-1.5 text-sm text-muted-foreground">{estimate.milestone}</p>
-              </div>
-            </div>
-
-            <ul className="mt-7 space-y-3">
-              {benefits.map((benefit) => (
-                <li key={benefit} className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-amber" />
-                  {benefit}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-7 rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                Risk Reversal
-              </p>
-              <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                <li>Missed milestone date? That sprint is discounted by 10%.</li>
-                <li>You own all code and infrastructure from day one.</li>
-                <li>Week 1 is architecture and scope validation before full build commitment.</li>
-              </ul>
-            </div>
-
-            {advancedMode ? (
-              <div className="mt-7 rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                  Common Objections
-                </p>
-                <div className="mt-3 space-y-2">
-                  {objections.map((item) => (
-                    <details
-                      key={item.question}
-                      className="rounded-lg border border-black/8 bg-white px-3 py-2.5"
-                    >
-                      <summary className="cursor-pointer text-sm font-medium text-foreground">
-                        {item.question}
-                      </summary>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                        {item.answer}
-                      </p>
-                    </details>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            <p className="mt-7 inline-flex items-center gap-2 rounded-lg border border-black/8 bg-white/80 px-4 py-2.5 text-xs text-muted-foreground shadow-sm">
-              <ShieldCheck size={14} className="text-amber" />
-              100% confidential. We never share project details.
-            </p>
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="rounded-2xl border border-black/8 bg-white/90 p-6 shadow-[0_4px_24px_rgba(16,24,40,0.08)] backdrop-blur-sm"
-          >
+          <div className="space-y-5 lg:row-span-2 lg:self-center">
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-2xl border border-black/8 bg-white/90 p-6 shadow-[0_4px_24px_rgba(16,24,40,0.08)] backdrop-blur-sm"
+            >
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
               Step {step} of 2
             </p>
@@ -495,7 +380,163 @@ export default function CTA({ advancedMode = true }: CTAProps) {
                 We respond within 2 business hours.
               </p>
             ) : null}
-          </form>
+            </form>
+          </div>
+
+          {advancedMode ? (
+            <div className="lg:col-start-1 lg:row-start-2">
+              <div className="rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  Plan Preview
+                </p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                  {planPreview.map((item) => (
+                    <div key={item.title} className="rounded-xl border border-black/8 bg-white p-3">
+                      <p className="text-xs font-semibold text-foreground">{item.title}</p>
+                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                        {item.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-black/8 bg-white/80 px-4 py-2.5 text-center text-xs font-semibold text-foreground shadow-sm">
+                  <ShieldCheck size={14} className="text-amber" />
+                  100% confidential. We never share project details.
+                </p>
+              </div>
+            </div>
+          ) : null}
+
+          <div className="lg:col-start-1 lg:row-start-3">
+            <ul className="space-y-3">
+              {benefits.map((benefit) => (
+                <li key={benefit} className="flex items-start gap-3 text-sm text-muted-foreground">
+                  <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-amber" />
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="relative z-10 mt-8 grid gap-5 lg:grid-cols-2">
+          <div className="space-y-5">
+            <details className="group rounded-2xl border border-black/8 bg-white/90 p-5 shadow-[0_4px_24px_rgba(16,24,40,0.08)] backdrop-blur-sm">
+              <summary className="cursor-pointer list-none">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                      Fit Estimator
+                    </p>
+                    <p className="mt-1.5 text-sm text-muted-foreground">
+                      Quick range estimate based on your scope, urgency, and audience size.
+                    </p>
+                  </div>
+                  <ChevronDown
+                    size={16}
+                    className="mt-0.5 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180"
+                  />
+                </div>
+              </summary>
+              <div className="mt-4 grid gap-3">
+                <label className="text-xs font-semibold text-foreground/70">
+                  Project type
+                  <select
+                    value={projectType}
+                    onChange={(e) => setProjectType(e.target.value as ProjectType)}
+                    className="mt-1.5 w-full rounded-xl border border-black/10 bg-white px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-amber/40 focus:ring-2 focus:ring-amber/15"
+                  >
+                    <option value="webapp">Web Application</option>
+                    <option value="website">Website or Landing Page</option>
+                    <option value="ai">AI Product or Integration</option>
+                  </select>
+                </label>
+                <label className="text-xs font-semibold text-foreground/70">
+                  Urgency
+                  <select
+                    value={urgency}
+                    onChange={(e) => setUrgency(e.target.value as Urgency)}
+                    className="mt-1.5 w-full rounded-xl border border-black/10 bg-white px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-amber/40 focus:ring-2 focus:ring-amber/15"
+                  >
+                    <option value="normal">Normal (4-8 weeks)</option>
+                    <option value="soon">Soon (2-4 weeks)</option>
+                    <option value="rush">Rush (under 2 weeks)</option>
+                  </select>
+                </label>
+                <label className="text-xs font-semibold text-foreground/70">
+                  Monthly visitors or active users
+                  <select
+                    value={traffic}
+                    onChange={(e) => setTraffic(e.target.value as Traffic)}
+                    className="mt-1.5 w-full rounded-xl border border-black/10 bg-white px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-amber/40 focus:ring-2 focus:ring-amber/15"
+                  >
+                    <option value="low">Under 10k</option>
+                    <option value="mid">10k-100k</option>
+                    <option value="high">100k+</option>
+                  </select>
+                </label>
+              </div>
+              <div className="mt-4 rounded-xl border border-amber/25 bg-amber/[0.08] p-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-amber">
+                  Typical engagement range
+                </p>
+                <p className="mt-1 text-lg font-bold text-foreground">{estimate.range}</p>
+                <p className="mt-1.5 text-sm text-muted-foreground">{estimate.milestone}</p>
+              </div>
+            </details>
+
+            <div className="rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                Risk Reversal
+              </p>
+              <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                <li>Missed milestone date? That sprint is discounted by 10%.</li>
+                <li>You own all code and infrastructure from day one.</li>
+                <li>Week 1 is architecture and scope validation before full build commitment.</li>
+              </ul>
+            </div>
+          </div>
+
+          {advancedMode ? (
+            <div className="rounded-2xl border border-black/8 bg-white/85 p-5 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                Common Objections
+              </p>
+              <div className="mt-3 space-y-2">
+                {objections.map((item) => {
+                  const isOpen = openObjection === item.question;
+                  return (
+                    <div
+                      key={item.question}
+                      className="rounded-lg border border-black/8 bg-white px-3 py-2.5"
+                    >
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setOpenObjection((prev) =>
+                            prev === item.question ? null : item.question
+                          )
+                        }
+                        className="flex w-full items-center justify-between gap-3 text-left text-sm font-medium text-foreground"
+                        aria-expanded={isOpen}
+                      >
+                        <span>{item.question}</span>
+                        <ChevronDown
+                          size={15}
+                          className={`shrink-0 text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      {isOpen ? (
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                          {item.answer}
+                        </p>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
         </div>
       </motion.div>
     </SectionShell>
