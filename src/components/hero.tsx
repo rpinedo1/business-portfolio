@@ -7,32 +7,40 @@ import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const proofItems = [
-  { label: "Projects shipped", value: "50+" },
-  { label: "Avg. launch", value: "8.2 weeks" },
-  { label: "Clients who stay", value: "78%" },
-  { label: "Avg. response", value: "<2 business hours" },
+  { label: "Qualified calls in 60 days", value: "+32%" },
+  { label: "Team hours saved per week", value: "12.4h" },
+  { label: "Landing page conversion in 90 days", value: "3.2x" },
 ];
 
 const researchLinks = [
   {
     label: "SMBs using AI report stronger growth",
     href: "https://www.salesforce.com/news/stories/smbs-ai-trends-2025/",
+    takeaway: "AI adopters report faster growth and stronger competitiveness.",
   },
   {
     label: "U.S. small business AI adoption trends",
     href: "https://www.uschamber.com/technology/empowering-small-business-the-impact-of-technology-on-u-s-small-business",
+    takeaway: "Small businesses are using AI most for productivity and efficiency.",
   },
   {
     label: "AI productivity study (NBER)",
     href: "https://www.nber.org/papers/w31161",
+    takeaway: "LLM assistance can materially improve worker productivity.",
   },
+] as const;
+
+const goalChips = [
+  { value: "increase-leads", label: "Get More Leads" },
+  { value: "automate-ops", label: "Save Time with AI" },
+  { value: "improve-conversion", label: "Increase Conversion Rate" },
 ] as const;
 
 const heroCopy = {
   default: {
     badge: "Next kickoff window: March 18, 2026",
     title: "Get a website or AI system that helps you make more money and save more time",
-    body: "We help small businesses turn traffic into booked calls and automate repetitive work in 6-10 weeks.",
+    body: "We help small businesses get more qualified leads and save 10+ hours/week with conversion-focused websites and practical AI automations.",
   },
   ai: {
     badge: "AI build sprint starts March 18, 2026",
@@ -280,6 +288,11 @@ export default function Hero({
     return () => clearInterval(timer);
   }, [isMobile]);
 
+  const routeToGoal = (goal: string) => {
+    window.dispatchEvent(new CustomEvent("set-primary-goal", { detail: { goal } }));
+    scrollToSection("#contact");
+  };
+
   return (
     <section className="relative min-h-[90vh] overflow-x-clip overflow-y-hidden noise-bg">
       {/* Background orbs */}
@@ -391,8 +404,12 @@ export default function Hero({
                   e.preventDefault();
                   scrollToSection("#contact");
                 }}
-                className="group inline-flex items-center gap-2 rounded-xl bg-amber px-8 py-3.5 text-sm font-semibold text-white shadow-md shadow-amber/25 transition hover:brightness-105 hover:shadow-lg hover:shadow-amber/30"
+                className="group inline-flex cursor-pointer items-center gap-2 rounded-xl bg-amber px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber/30 ring-1 ring-amber/40 transition-all duration-200 hover:-translate-y-0.5 hover:brightness-105 hover:shadow-xl hover:shadow-amber/35 active:translate-y-0"
               >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/80 opacity-80" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+                </span>
                 Get My Free Growth Plan
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
@@ -410,6 +427,49 @@ export default function Hero({
             <p className="mt-3 text-xs text-muted-foreground">
               You&apos;ll leave with a clear plan and budget range. No pressure.
             </p>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+              {goalChips.map((goal) => (
+                <button
+                  key={goal.value}
+                  type="button"
+                  onClick={() => routeToGoal(goal.value)}
+                  className="group inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-black/12 bg-white px-3 py-1.5 text-xs font-semibold text-foreground shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-amber/30 hover:shadow-md active:translate-y-0"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-amber/75 transition group-hover:bg-amber" />
+                  {goal.label}
+                </button>
+              ))}
+            </div>
+            {showCroBlocks ? (
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-2 rounded-xl border border-black/8 bg-white/70 px-3 py-2 lg:justify-start">
+                <span className="rounded-full border border-black/10 bg-white px-2.5 py-1 text-[11px] font-medium text-foreground/85">
+                  50+ projects shipped
+                </span>
+                <span className="rounded-full border border-black/10 bg-white px-2.5 py-1 text-[11px] font-medium text-foreground/85">
+                  Avg. launch: 8.2 weeks
+                </span>
+                <details className="text-[11px] text-muted-foreground">
+                  <summary className="cursor-pointer font-semibold text-foreground/85">
+                    Backed by industry research and client outcomes
+                  </summary>
+                  <div className="mt-2 space-y-2 rounded-lg border border-black/8 bg-white p-3">
+                    {researchLinks.map((link) => (
+                      <p key={link.href} className="leading-relaxed">
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="font-semibold text-amber underline decoration-amber/40 underline-offset-2 transition hover:text-orange-600"
+                        >
+                          {link.label}
+                        </a>{" "}
+                        <span>{link.takeaway}</span>
+                      </p>
+                    ))}
+                  </div>
+                </details>
+              </div>
+            ) : null}
 
             {isMobile ? (
               <motion.div
@@ -466,36 +526,6 @@ export default function Hero({
                 ))}
               </motion.div>
             )}
-            {showCroBlocks ? (
-              <div className="mt-3 lg:hidden">
-                <p className="text-xs text-muted-foreground">
-                  Based on our last 18 client engagements (2024-2026).
-                </p>
-                <div className="mt-2 flex flex-wrap items-center gap-2">
-                  <span className="text-[11px] font-medium text-muted-foreground">Research-backed:</span>
-                  {researchLinks.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-[11px] font-medium text-amber underline decoration-amber/40 underline-offset-2 transition hover:text-orange-600"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-                <details className="mt-1 text-xs text-muted-foreground">
-                  <summary className="cursor-pointer font-medium text-foreground/80">
-                    How we calculate this
-                  </summary>
-                  <p className="mt-1.5 max-w-xl leading-relaxed">
-                    Metrics are aggregated from project close-out reports and post-launch check-ins.
-                    Time-based metrics use kickoff-to-live dates. Response metrics come from client communication logs.
-                  </p>
-                </details>
-              </div>
-            ) : null}
           </div>
 
           {/* Right: floating visual */}
@@ -513,7 +543,7 @@ export default function Hero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.52 }}
-          className="mt-10 hidden lg:grid lg:grid-cols-4 lg:gap-3"
+          className="mt-10 hidden lg:grid lg:grid-cols-3 lg:gap-3"
         >
           {proofItems.map((item) => (
             <div
@@ -531,36 +561,6 @@ export default function Hero({
             </div>
           ))}
         </motion.div>
-        {showCroBlocks ? (
-          <div className="mt-3 hidden lg:block">
-            <p className="text-xs text-muted-foreground">
-              Based on our last 18 client engagements (2024-2026).
-            </p>
-            <div className="mt-2 flex flex-wrap items-center gap-2">
-              <span className="text-[11px] font-medium text-muted-foreground">Research-backed:</span>
-              {researchLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-[11px] font-medium text-amber underline decoration-amber/40 underline-offset-2 transition hover:text-orange-600"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-            <details className="mt-1 text-xs text-muted-foreground">
-              <summary className="cursor-pointer font-medium text-foreground/80">
-                How we calculate this
-              </summary>
-              <p className="mt-1.5 max-w-xl leading-relaxed">
-                Metrics are aggregated from project close-out reports and post-launch check-ins.
-                Time-based metrics use kickoff-to-live dates. Response metrics come from client communication logs.
-              </p>
-            </details>
-          </div>
-        ) : null}
       </div>
 
       {/* Bottom fade */}

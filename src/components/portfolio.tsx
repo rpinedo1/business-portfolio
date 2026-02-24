@@ -225,6 +225,25 @@ export default function Portfolio() {
           </motion.div>
         </div>
 
+        <div className="mt-8 grid gap-3 rounded-2xl border border-black/8 bg-white/80 p-4 sm:grid-cols-2">
+          <div className="rounded-xl border border-emerald-200/70 bg-emerald-50/70 p-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-700">
+              Best Fit
+            </p>
+            <p className="mt-1.5 text-sm text-foreground">
+              Small businesses with active traffic that need more qualified leads, faster sales flow, or clear AI time savings.
+            </p>
+          </div>
+          <div className="rounded-xl border border-amber/25 bg-amber/[0.08] p-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-amber">
+              Not Ideal
+            </p>
+            <p className="mt-1.5 text-sm text-foreground">
+              Teams looking only for low-cost dev hours with no growth goal, owner involvement, or KPI accountability.
+            </p>
+          </div>
+        </div>
+
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {visibleProjects.map((project) => (

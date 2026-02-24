@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, CheckCircle2, ChevronDown, ShieldCheck } from "lucide-react";
 import { SectionShell } from "@/components/section-shell";
@@ -60,6 +60,39 @@ const objections = [
   },
 ];
 
+const goalDetails = {
+  "": {
+    label: "your growth goal",
+    bottleneck: "unclear positioning or conversion friction",
+    firstMilestone: "clarify the highest-impact page or workflow to improve first",
+    cta: "Get My Growth Plan",
+  },
+  "increase-leads": {
+    label: "more qualified leads",
+    bottleneck: "traffic is not converting into booked calls",
+    firstMilestone: "rewrite hero + CTA path for higher-intent inquiries",
+    cta: "Show me how to get more leads",
+  },
+  "automate-ops": {
+    label: "saving time with automation",
+    bottleneck: "repetitive tasks are draining your team each week",
+    firstMilestone: "automate one high-volume workflow in week one",
+    cta: "Show me how AI can save us time",
+  },
+  "ship-product": {
+    label: "launching quickly",
+    bottleneck: "too many priorities and no clear first release scope",
+    firstMilestone: "lock MVP scope and timeline for the first release",
+    cta: "Show me the fastest launch path",
+  },
+  "improve-conversion": {
+    label: "higher conversion rate",
+    bottleneck: "people visit key pages but drop before taking action",
+    firstMilestone: "prioritize page-level fixes for biggest conversion wins",
+    cta: "Show me how to increase conversion",
+  },
+} as const;
+
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -112,6 +145,21 @@ export default function CTA({ advancedMode = true }: CTAProps) {
     () => getEstimate(projectType, urgency, traffic),
     [projectType, urgency, traffic]
   );
+  const selectedGoal = goalDetails[leadGoal as keyof typeof goalDetails] ?? goalDetails[""];
+
+  useEffect(() => {
+    const onGoalSet = (event: Event) => {
+      const customEvent = event as CustomEvent<{ goal?: string }>;
+      const goal = customEvent.detail?.goal ?? "";
+      setLeadGoal(goal);
+      setStep(1);
+      setStatus("idle");
+      setStatusMessage("");
+    };
+
+    window.addEventListener("set-primary-goal", onGoalSet as EventListener);
+    return () => window.removeEventListener("set-primary-goal", onGoalSet as EventListener);
+  }, []);
 
   const handleContinue = () => {
     setStatus("idle");
@@ -247,6 +295,21 @@ export default function CTA({ advancedMode = true }: CTAProps) {
 
             {step === 1 ? (
               <div className="mt-4">
+                <div className="mb-4 rounded-xl border border-amber/25 bg-amber/[0.08] p-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-amber">
+                    90-Second Plan Preview
+                  </p>
+                  <p className="mt-1.5 text-xs text-muted-foreground">
+                    Goal: <span className="font-semibold text-foreground">{selectedGoal.label}</span>
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Likely bottleneck: {selectedGoal.bottleneck}
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    First milestone: {selectedGoal.firstMilestone}
+                  </p>
+                </div>
+
                 <div>
                   <label htmlFor="lead-email" className="mb-2 block text-xs font-semibold text-foreground/70">
                     Work Email
@@ -299,12 +362,20 @@ export default function CTA({ advancedMode = true }: CTAProps) {
                   </div>
                 ) : null}
 
+                <div className="mt-4 rounded-xl border border-black/8 bg-white/80 p-3">
+                  <ul className="space-y-1.5 text-xs text-muted-foreground">
+                    <li>No pressure call. Clear recommendations only.</li>
+                    <li>Budget range shared in the call.</li>
+                    <li>You leave with a practical next-step plan.</li>
+                  </ul>
+                </div>
+
                 <button
                   type="button"
                   onClick={handleContinue}
                   className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-amber px-8 py-3.5 text-sm font-semibold text-white shadow-md shadow-amber/25 transition hover:brightness-105 hover:shadow-lg hover:shadow-amber/30"
                 >
-                  Continue
+                  {selectedGoal.cta}
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
@@ -348,6 +419,14 @@ export default function CTA({ advancedMode = true }: CTAProps) {
                   <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
                 </div>
 
+                <div className="mt-4 rounded-xl border border-black/8 bg-white/80 p-3">
+                  <ul className="space-y-1.5 text-xs text-muted-foreground">
+                    <li>No pressure call. Clear recommendations only.</li>
+                    <li>Budget range shared in the call.</li>
+                    <li>You leave with a practical next-step plan.</li>
+                  </ul>
+                </div>
+
                 <div className="mt-4 flex gap-2">
                   <button
                     type="button"
@@ -361,7 +440,7 @@ export default function CTA({ advancedMode = true }: CTAProps) {
                     disabled={isSubmitting}
                     className="group inline-flex w-2/3 items-center justify-center gap-2 rounded-xl bg-amber px-8 py-3 text-sm font-semibold text-white shadow-md shadow-amber/25 transition hover:brightness-105 hover:shadow-lg hover:shadow-amber/30 disabled:cursor-not-allowed disabled:opacity-75"
                   >
-                    {isSubmitting ? "Sending..." : "Send Me My Growth Plan"}
+                    {isSubmitting ? "Sending..." : selectedGoal.cta}
                     <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                   </button>
                 </div>

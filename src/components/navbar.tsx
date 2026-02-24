@@ -8,8 +8,7 @@ import { scrollToSection } from "@/lib/scroll-to-section";
 const navLinks = [
   { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Why Us", href: "#why-us" },
+  { label: "Process", href: "#about" },
   { label: "Testimonials", href: "#testimonials" },
 ];
 
@@ -106,7 +105,7 @@ export default function Navbar() {
             onClick={(e) => handleNavClick(e, "#contact")}
             className="hidden rounded-xl bg-amber px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-amber/25 transition hover:brightness-105 md:inline-flex"
           >
-            Get Build Plan
+            Get Growth Plan
           </a>
 
           <button
@@ -161,7 +160,7 @@ export default function Navbar() {
                   onClick={(e) => handleNavClick(e, "#contact")}
                   className="mt-2 rounded-xl bg-amber px-5 py-3 text-center text-sm font-semibold text-white shadow-sm shadow-amber/25 transition hover:brightness-105"
                 >
-                  Get Build Plan
+                  Get Growth Plan
                 </a>
               </div>
             </motion.div>

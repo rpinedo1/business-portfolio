@@ -4,8 +4,20 @@ import { motion } from "framer-motion";
 import { Globe, Smartphone, Brain, Code, Zap, BarChart3, ArrowRight } from "lucide-react";
 import { SectionHeader, SectionShell } from "@/components/section-shell";
 import { scrollToSection } from "@/lib/scroll-to-section";
+import { useState } from "react";
 
 const services = [
+  {
+    icon: Brain,
+    title: "Save Time With AI",
+    description:
+      "We automate repetitive tasks like lead follow-up, support replies, and reporting so your team can focus on growth.",
+    features: ["Lead Follow-Up", "Support Automation", "Auto Reporting"],
+    color: "from-amber/15 to-amber/5",
+    iconBg: "bg-amber-muted",
+    iconColor: "text-amber",
+    accent: "group-hover:border-amber/30",
+  },
   {
     icon: Globe,
     title: "Launch Revenue Features",
@@ -27,17 +39,6 @@ const services = [
     iconBg: "bg-violet-50",
     iconColor: "text-violet-500",
     accent: "group-hover:border-violet-200",
-  },
-  {
-    icon: Brain,
-    title: "Save Time With AI",
-    description:
-      "We automate repetitive tasks like lead follow-up, support replies, and reporting so your team can focus on growth.",
-    features: ["Lead Follow-Up", "Support Automation", "Auto Reporting"],
-    color: "from-amber/15 to-amber/5",
-    iconBg: "bg-amber-muted",
-    iconColor: "text-amber",
-    accent: "group-hover:border-amber/30",
   },
   {
     icon: Code,
@@ -85,6 +86,9 @@ const itemVariants = {
 };
 
 export default function Services() {
+  const [expanded, setExpanded] = useState(false);
+  const visibleServices = expanded ? services : services.slice(0, 3);
+
   return (
     <SectionShell id="services">
       <SectionHeader
@@ -100,7 +104,7 @@ export default function Services() {
         viewport={{ once: true, margin: "-80px" }}
         className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {services.map((service) => (
+        {visibleServices.map((service) => (
           <motion.article
             key={service.title}
             variants={itemVariants}
@@ -133,6 +137,38 @@ export default function Services() {
           </motion.article>
         ))}
       </motion.div>
+
+      {services.length > 3 ? (
+        <div className="mt-6">
+          <div className="flex justify-center">
+            <button
+              type="button"
+              onClick={() => setExpanded((prev) => !prev)}
+              className="rounded-xl border border-black/10 bg-white px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-amber/30 hover:text-amber"
+            >
+              {expanded ? "Show fewer services" : "Show all services"}
+            </button>
+          </div>
+          {expanded ? (
+            <div className="mx-auto mt-4 max-w-xl rounded-2xl border border-black/8 bg-white/85 p-4 text-center shadow-sm">
+              <p className="text-sm text-muted-foreground">
+                Not sure which service mix is right? Start with your goal and we&apos;ll recommend the best path.
+              </p>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("#contact");
+                }}
+                className="mt-3 inline-flex items-center gap-2 rounded-lg bg-amber px-4 py-2 text-xs font-semibold text-white transition hover:brightness-105"
+              >
+                Get My Recommendation
+                <ArrowRight size={13} />
+              </a>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
 
       <motion.div
         initial={{ opacity: 0, y: 16 }}

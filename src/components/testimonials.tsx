@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 const testimonials = [
   {
     before: "Fragmented reporting and low product adoption across teams.",
+    change: "Reworked onboarding and reporting flow based on role-specific user jobs.",
     after: "Unified reporting plus guided onboarding for each user segment.",
     name: "Sarah Chen",
     title: "CEO, FinTrack",
@@ -23,6 +24,7 @@ const testimonials = [
   },
   {
     before: "Support backlog with 4-hour first response and inconsistent quality.",
+    change: "Implemented AI-first triage, instant replies, and clear human escalation rules.",
     after: "AI-first support workflow with escalation routing for complex tickets.",
     name: "Marcus Johnson",
     title: "CTO, Luminary",
@@ -36,6 +38,7 @@ const testimonials = [
   },
   {
     before: "Paid traffic was rising while landing page conversion stayed flat.",
+    change: "Rebuilt message hierarchy and reduced checkout friction on highest-intent pages.",
     after: "Message hierarchy and checkout UX aligned to purchase intent.",
     name: "Emily Rodriguez",
     title: "Founder, Greenleaf",
@@ -49,6 +52,7 @@ const testimonials = [
   },
   {
     before: "Patient scheduling and messaging sat across disconnected systems.",
+    change: "Unified secure access points and simplified key scheduling workflows.",
     after: "Single secure portal with scheduling, messaging, and records access.",
     name: "David Park",
     title: "VP Product, MedSync",
@@ -116,6 +120,9 @@ export default function Testimonials() {
               <div className="relative z-10 mt-4 space-y-3 text-sm leading-relaxed text-foreground/80">
                 <p>
                   <span className="font-semibold text-foreground">Before:</span> {activeTestimonial.before}
+                </p>
+                <p>
+                  <span className="font-semibold text-foreground">What we changed:</span> {activeTestimonial.change}
                 </p>
                 <p>
                   <span className="font-semibold text-foreground">After:</span> {activeTestimonial.after}
