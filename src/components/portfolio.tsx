@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { ExternalLink, ArrowRight, X } from "lucide-react";
 import { SectionHeader, SectionShell } from "@/components/section-shell";
 
-const categories = ["All", "Web Apps", "Websites", "AI Solutions"] as const;
+const categories = ["All", "Web Apps", "Landing Pages", "AI Solutions"] as const;
 
 const projects = [
   {
     title: "Law Firm Website Builder",
-    category: "Websites",
+    category: "Landing Pages",
     description:
       "Conversion-focused legal services website template with trust-first messaging, strong call routing, and structured lead capture.",
     tags: ["Next.js", "Tailwind", "Vercel"],
@@ -88,7 +88,7 @@ const projects = [
   },
   {
     title: "Greenleaf Commerce",
-    category: "Websites",
+    category: "Landing Pages",
     description:
       "High-converting e-commerce site for a sustainable brand. 3.2× increase in conversion rate within 90 days of launch.",
     tags: ["Shopify", "Next.js", "Tailwind"],
@@ -145,7 +145,7 @@ const projects = [
   },
   {
     title: "Artisan Studio",
-    category: "Websites",
+    category: "Landing Pages",
     description:
       "Portfolio and booking platform for a creative agency. Immersive animations and clear UX drove a 45% increase in qualified inquiries.",
     tags: ["Next.js", "Framer Motion", "Sanity"],
@@ -290,6 +290,10 @@ export default function Portfolio() {
 
                 {/* Card body */}
                 <div className="p-6">
+                  <p className="text-sm font-semibold text-amber">
+                    Result: {project.metrics}
+                    {project.timeline !== "Sample artifact" ? ` in ${project.timeline}` : ""}
+                  </p>
                   <div className="flex items-center justify-between">
                     <span className={`text-xs font-semibold ${project.categoryColor}`}>
                       {project.category}

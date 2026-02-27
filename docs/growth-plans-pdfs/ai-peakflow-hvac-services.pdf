@@ -1,0 +1,135 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Length 8653 >>
+stream
+0.110 0.360 0.780 rg 0.00 684.00 612.00 108.00 re f
+BT /F2 20.00 Tf 1.000 1.000 1.000 rg 1 0 0 1 36.00 750.00 Tm (Growth Action Plan) Tj ET
+BT /F1 11.00 Tf 0.920 0.950 1.000 rg 1 0 0 1 36.00 726.00 Tm (PeakFlow HVAC Services | AI) Tj ET
+BT /F1 10.00 Tf 0.920 0.950 1.000 rg 1 0 0 1 36.00 708.00 Tm (Lead: Marcus Lee  |  Primary Goal: Save time with AI) Tj ET
+0.950 0.970 1.000 rg 36.00 626.00 259.20 46.00 re f
+0.930 0.970 0.950 rg 316.80 626.00 259.20 46.00 re f
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 46.00 652.00 Tm (Industry: Home Services \(HVAC\)) Tj ET
+BT /F1 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 46.00 638.00 Tm (Team Size: 24 employees) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 326.80 652.00 Tm (Traffic/Users: ~7,200 monthly visits; 310 monthly service requests) Tj ET
+BT /F1 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 326.80 638.00 Tm (Expected first measurable gains: 2-6 weeks) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 602.00 Tm (1\) Executive Summary) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 588.00 Tm (-) Tj ET
+BT /F1 8.70 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 588.00 Tm (Likely bottleneck: Request triage and follow-ups are handled manually across phone, email, and SMS.) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 576.30 Tm (-) Tj ET
+BT /F1 8.70 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 576.30 Tm (Fastest path: Automate request classification + urgency routing) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 564.60 Tm (-) Tj ET
+BT /F1 8.70 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 564.60 Tm (Expected impact: Cut response lag by 30-40% \(High confidence\).) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 552.90 Tm (-) Tj ET
+BT /F1 8.70 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 552.90 Tm (Context: Dispatch and support teams manually triage service requests, quote follow-ups, and technician scheduling) Tj ET
+BT /F1 8.70 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 542.20 Tm (updates.) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 528.50 Tm (2\) Opportunity Diagnosis) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 515.50 Tm (-) Tj ET
+BT /F1 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 515.50 Tm (Primary: Request triage and follow-ups are handled manually across phone, email, and SMS.) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 504.00 Tm (-) Tj ET
+BT /F1 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 504.00 Tm (Secondary: Leads cool down before quote reminders are sent.) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 492.50 Tm (-) Tj ET
+BT /F1 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 492.50 Tm (Assumption: Assumes CRM has pipeline stages and webhook access.) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 479.00 Tm (3\) 30-60-90 Plan \(Outcome-Based\)) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 467.00 Tm (Window) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 118.00 467.00 Tm (Focus) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 467.00 Tm (Action) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 390.00 467.00 Tm (Impact) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 524.00 467.00 Tm (Confidence) Tj ET
+0.85 0.88 0.92 RG 36 457.9999999999998 m 576 457.9999999999998 l S
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 456.00 Tm (0-30 days) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 118.00 456.00 Tm (Lead Triage) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 456.00 Tm (Automate request classification +) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 446.00 Tm (urgency routing) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 390.00 456.00 Tm (Cut response lag by 30-40%) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 524.00 456.00 Tm (High confidence) Tj ET
+0.92 0.93 0.95 RG 36 437.9999999999998 m 576 437.9999999999998 l S
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 434.00 Tm (31-60 days) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 118.00 434.00 Tm (Follow-up) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 434.00 Tm (Auto-send quote nudges based on job) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 424.00 Tm (type and timing) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 390.00 434.00 Tm (Lift close rate 8-12%) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 524.00 434.00 Tm (Medium confidence) Tj ET
+0.92 0.93 0.95 RG 36 415.9999999999998 m 576 415.9999999999998 l S
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 412.00 Tm (61-90 days) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 118.00 412.00 Tm (Ops) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 412.00 Tm (Generate daily technician prep) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 402.00 Tm (summaries from tickets) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 390.00 412.00 Tm (Save 6-10 ops hours/week) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 524.00 412.00 Tm (Medium confidence) Tj ET
+0.92 0.93 0.95 RG 36 393.9999999999998 m 576 393.9999999999998 l S
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 388.00 Tm (4\) Top 5 Priority Actions) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 376.00 Tm (1.) Tj ET
+BT /F1 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 52.00 376.00 Tm (Define triage tags for emergency, maintenance, and replacement requests.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 364.70 Tm (2.) Tj ET
+BT /F1 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 52.00 364.70 Tm (Use AI to draft personalized follow-up texts within 5 minutes of quote delivery.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 353.40 Tm (3.) Tj ET
+BT /F1 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 52.00 353.40 Tm (Add missed-call AI callback workflow for after-hours leads.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 342.10 Tm (4.) Tj ET
+BT /F1 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 52.00 342.10 Tm (Create escalation rules for premium contracts and repeat customers.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 330.80 Tm (5.) Tj ET
+BT /F1 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 52.00 330.80 Tm (Track and prune low-performing message templates every week.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 361.50 Tm (Projected KPI Direction \(30/60/90\)) Tj ET
+0.093 0.306 0.663 rg 251.00 313.50 26.00 23.20 re f
+BT /F1 7.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 254.00 303.50 Tm (30d) Tj ET
+0.093 0.306 0.663 rg 291.00 313.50 26.00 29.20 re f
+BT /F1 7.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 294.00 303.50 Tm (60d) Tj ET
+0.093 0.306 0.663 rg 331.00 313.50 26.00 32.80 re f
+BT /F1 7.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 334.00 303.50 Tm (90d) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 295.50 Tm (5\) Offer Recommendation + KPI Scorecard) Tj ET
+BT /F1 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 283.50 Tm (Recommended: AI Automation \(Primary\). Track weekly: First-response time, quote-to-close rate, dispatch admin hours.) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 270.00 Tm (6\) Risks & Mitigation) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 258.00 Tm (-) Tj ET
+BT /F1 8.20 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 258.00 Tm (Risk: Bad lead routing. Mitigation: human override for first 2 weeks.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 246.80 Tm (-) Tj ET
+BT /F1 8.20 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 246.80 Tm (Risk: Message fatigue. Mitigation: frequency caps and channel preference.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 235.60 Tm (-) Tj ET
+BT /F1 8.20 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 235.60 Tm (Risk: Data quality gaps. Mitigation: enforce required fields at intake.) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 222.40 Tm (7\) Immediate Next Step) Tj ET
+BT /F1 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 211.40 Tm (Implement an AI-powered missed-call recovery and triage flow for one service region in the next 7 days.) Tj ET
+BT /F2 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 198.90 Tm ("If useful, I can turn this into a hands-on execution sprint with milestones, owners, and delivery dates.") Tj ET
+BT /F2 9.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 176.60 Tm (Book a strategy call:) Tj ET
+BT /F2 9.50 Tf 0.040 0.310 0.740 rg 1 0 0 1 138.00 176.60 Tm (https://nexgen.studio/#contact) Tj ET
+0.040 0.310 0.740 RG 138.00 175.60 m 280.50 175.60 l S
+BT /F2 9.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 163.60 Tm (Site:) Tj ET
+BT /F2 9.50 Tf 0.040 0.310 0.740 rg 1 0 0 1 64.00 163.60 Tm (https://nexgen.studio) Tj ET
+0.040 0.310 0.740 RG 64.00 162.60 m 163.75 162.60 l S
+BT /F1 8.20 Tf 0.400 0.440 0.520 rg 1 0 0 1 396.00 18.00 Tm (Prepared by NexGen Studio) Tj ET
+endstream
+endobj
+4 0 obj
+<< /Type /Annot /Subtype /Link /Rect [138.00 174.60 280.50 188.10] /Border [0 0 0] /A << /S /URI /URI (https://nexgen.studio/#contact) >> >>
+endobj
+5 0 obj
+<< /Type /Annot /Subtype /Link /Rect [64.00 161.60 163.75 175.10] /Border [0 0 0] /A << /S /URI /URI (https://nexgen.studio) >> >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R /Annots [4 0 R 5 0 R] >>
+endobj
+7 0 obj
+<< /Type /Pages /Kids [6 0 R] /Count 1 >>
+endobj
+8 0 obj
+<< /Type /Catalog /Pages 7 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000008859 00000 n 
+0000009015 00000 n 
+0000009161 00000 n 
+0000009319 00000 n 
+0000009376 00000 n 
+trailer
+<< /Size 9 /Root 8 0 R >>
+startxref
+9425
+%%EOF

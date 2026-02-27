@@ -11,11 +11,11 @@ export default function MobileStickyCta() {
         onClick={() => scrollToSection("#contact")}
         className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-amber px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-amber/25 transition hover:brightness-105"
       >
-        Get Build Plan
+        Claim My $0 Setup Page
         <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
       </button>
       <p className="mt-1.5 text-center text-[11px] text-muted-foreground">
-        30 mins • no pitch deck
+        Takes 2 mins • No credit card
       </p>
     </div>
   );

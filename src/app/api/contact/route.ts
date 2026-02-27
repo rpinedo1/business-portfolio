@@ -3,14 +3,14 @@ import { z } from "zod";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2).max(100),
-  email: z
-    .string()
-    .trim()
-    .email("Please provide a valid email address.")
-    .max(200),
-  service: z.string().trim().min(1).max(100),
-  project: z.string().trim().min(10).max(4000),
-  company: z.string().trim().max(0).optional(),
+  email: z.string().trim().email().max(200),
+  businessName: z.string().trim().min(1).max(200),
+  industry: z.string().trim().min(1).max(100),
+  description: z.string().trim().min(10).max(2000),
+  visitorGoal: z.enum(["call", "book", "buy", "email"]),
+  contactInfo: z.string().trim().min(5).max(500),
+  hasBranding: z.enum(["yes", "no"]),
+  company: z.string().trim().max(0).optional(), // honeypot
 });
 
 const WINDOW_MS = 60_000;
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, email, service, project } = parsed.data;
+    const { name, email, businessName, industry, description, visitorGoal, contactInfo, hasBranding } = parsed.data;
     const userAgent = req.headers.get("user-agent") ?? "unknown";
 
     const webhookResponse = await fetch(webhookUrl, {
@@ -76,8 +76,12 @@ export async function POST(req: NextRequest) {
         lead: {
           name,
           email,
-          service,
-          project,
+          businessName,
+          industry,
+          description,
+          visitorGoal,
+          contactInfo,
+          hasBranding,
         },
         metadata: {
           ip,

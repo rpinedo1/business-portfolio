@@ -1,0 +1,136 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Length 8691 >>
+stream
+0.110 0.360 0.780 rg 0.00 684.00 612.00 108.00 re f
+BT /F2 20.00 Tf 1.000 1.000 1.000 rg 1 0 0 1 36.00 750.00 Tm (Growth Action Plan) Tj ET
+BT /F1 11.00 Tf 0.920 0.950 1.000 rg 1 0 0 1 36.00 726.00 Tm (LunaSkin DTC | AI) Tj ET
+BT /F1 10.00 Tf 0.920 0.950 1.000 rg 1 0 0 1 36.00 708.00 Tm (Lead: Sofia Grant  |  Primary Goal: Save time with AI) Tj ET
+0.950 0.970 1.000 rg 36.00 626.00 259.20 46.00 re f
+0.930 0.970 0.950 rg 316.80 626.00 259.20 46.00 re f
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 46.00 652.00 Tm (Industry: Ecommerce \(Beauty\)) Tj ET
+BT /F1 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 46.00 638.00 Tm (Team Size: 14 team members) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 326.80 652.00 Tm (Traffic/Users: ~52,000 monthly sessions; 1,400 support tickets/month) Tj ET
+BT /F1 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 326.80 638.00 Tm (Expected first measurable gains: 2-6 weeks) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 602.00 Tm (1\) Executive Summary) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 588.00 Tm (-) Tj ET
+BT /F1 8.70 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 588.00 Tm (Likely bottleneck: High-volume repetitive support tickets delay personalized support.) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 576.30 Tm (-) Tj ET
+BT /F1 8.70 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 576.30 Tm (Fastest path: Deploy AI ticket deflection for order and return intents) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 564.60 Tm (-) Tj ET
+BT /F1 8.70 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 564.60 Tm (Expected impact: Deflect 25-35% tickets \(High confidence\).) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 552.90 Tm (-) Tj ET
+BT /F1 8.70 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 552.90 Tm (Context: Support team spends too much time on order status, returns, and product-match questions, impacting retention) Tj ET
+BT /F1 8.70 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 542.20 Tm (campaigns.) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 528.50 Tm (2\) Opportunity Diagnosis) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 515.50 Tm (-) Tj ET
+BT /F1 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 515.50 Tm (Primary: High-volume repetitive support tickets delay personalized support.) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 504.00 Tm (-) Tj ET
+BT /F1 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 504.00 Tm (Secondary: Retention opportunities are missed because support context is siloed.) Tj ET
+BT /F2 9.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 492.50 Tm (-) Tj ET
+BT /F1 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 492.50 Tm (Assumption: Assumes Shopify + helpdesk API access.) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 479.00 Tm (3\) 30-60-90 Plan \(Outcome-Based\)) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 467.00 Tm (Window) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 118.00 467.00 Tm (Focus) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 467.00 Tm (Action) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 390.00 467.00 Tm (Impact) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 524.00 467.00 Tm (Confidence) Tj ET
+0.85 0.88 0.92 RG 36 457.9999999999998 m 576 457.9999999999998 l S
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 456.00 Tm (0-30 days) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 118.00 456.00 Tm (Support) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 456.00 Tm (Deploy AI ticket deflection for order) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 446.00 Tm (and return intents) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 390.00 456.00 Tm (Deflect 25-35% tickets) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 524.00 456.00 Tm (High confidence) Tj ET
+0.92 0.93 0.95 RG 36 437.9999999999998 m 576 437.9999999999998 l S
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 434.00 Tm (31-60 days) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 118.00 434.00 Tm (Retention) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 434.00 Tm (Trigger post-support upsell and) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 424.00 Tm (replenishment journeys) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 390.00 434.00 Tm (Raise repeat purchase 4-8%) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 524.00 434.00 Tm (Medium confidence) Tj ET
+0.92 0.93 0.95 RG 36 415.9999999999998 m 576 415.9999999999998 l S
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 412.00 Tm (61-90 days) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 118.00 412.00 Tm (Insights) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 412.00 Tm (Auto-tag support themes for product) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 232.00 402.00 Tm (and CX feedback) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 390.00 412.00 Tm (Faster issue resolution cycles) Tj ET
+BT /F1 8.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 524.00 412.00 Tm (Exploratory) Tj ET
+0.92 0.93 0.95 RG 36 393.9999999999998 m 576 393.9999999999998 l S
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 388.00 Tm (4\) Top 5 Priority Actions) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 376.00 Tm (1.) Tj ET
+BT /F1 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 52.00 376.00 Tm (Train AI on shipping/returns policy and top 50 macros.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 364.70 Tm (2.) Tj ET
+BT /F1 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 52.00 364.70 Tm (Auto-generate suggested replies for agents with one-click approval.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 353.40 Tm (3.) Tj ET
+BT /F1 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 52.00 353.40 Tm (Route VIP customers to priority human support.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 342.10 Tm (4.) Tj ET
+BT /F1 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 52.00 342.10 Tm (Link support outcomes to retention email audience segments.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 330.80 Tm (5.) Tj ET
+BT /F1 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 52.00 330.80 Tm (Monitor deflection accuracy weekly and tune fallback logic.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 361.50 Tm (Projected KPI Direction \(30/60/90\)) Tj ET
+0.093 0.306 0.663 rg 251.00 313.50 26.00 24.80 re f
+BT /F1 7.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 254.00 303.50 Tm (30d) Tj ET
+0.093 0.306 0.663 rg 291.00 313.50 26.00 30.80 re f
+BT /F1 7.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 294.00 303.50 Tm (60d) Tj ET
+0.093 0.306 0.663 rg 331.00 313.50 26.00 33.60 re f
+BT /F1 7.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 334.00 303.50 Tm (90d) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 295.50 Tm (5\) Offer Recommendation + KPI Scorecard) Tj ET
+BT /F1 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 283.50 Tm (Recommended: AI Automation \(Primary\), Web Apps \(Secondary\). Track weekly: Ticket deflection, response SLA, repeat purchase) Tj ET
+BT /F1 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 273.00 Tm (rate.) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 259.50 Tm (6\) Risks & Mitigation) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 247.50 Tm (-) Tj ET
+BT /F1 8.20 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 247.50 Tm (Risk: Tone inconsistency. Mitigation: brand voice guardrails + QA sampling.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 236.30 Tm (-) Tj ET
+BT /F1 8.20 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 236.30 Tm (Risk: Policy drift. Mitigation: weekly sync from source-of-truth docs.) Tj ET
+BT /F2 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 225.10 Tm (-) Tj ET
+BT /F1 8.20 Tf 0.110 0.130 0.160 rg 1 0 0 1 48.00 225.10 Tm (Risk: Over-deflection. Mitigation: confidence threshold for human handoff.) Tj ET
+BT /F2 11.00 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 211.90 Tm (7\) Immediate Next Step) Tj ET
+BT /F1 8.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 200.90 Tm (Launch AI responses for the top 3 intents \(order status, returns, product match\) and compare SLA before/after.) Tj ET
+BT /F2 8.30 Tf 0.110 0.130 0.160 rg 1 0 0 1 38.00 188.40 Tm ("If useful, I can turn this into a hands-on execution sprint with milestones, owners, and delivery dates.") Tj ET
+BT /F2 9.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 166.10 Tm (Book a strategy call:) Tj ET
+BT /F2 9.50 Tf 0.040 0.310 0.740 rg 1 0 0 1 138.00 166.10 Tm (https://nexgen.studio/#contact) Tj ET
+0.040 0.310 0.740 RG 138.00 165.10 m 280.50 165.10 l S
+BT /F2 9.50 Tf 0.110 0.130 0.160 rg 1 0 0 1 36.00 153.10 Tm (Site:) Tj ET
+BT /F2 9.50 Tf 0.040 0.310 0.740 rg 1 0 0 1 64.00 153.10 Tm (https://nexgen.studio) Tj ET
+0.040 0.310 0.740 RG 64.00 152.10 m 163.75 152.10 l S
+BT /F1 8.20 Tf 0.400 0.440 0.520 rg 1 0 0 1 396.00 18.00 Tm (Prepared by NexGen Studio) Tj ET
+endstream
+endobj
+4 0 obj
+<< /Type /Annot /Subtype /Link /Rect [138.00 164.10 280.50 177.60] /Border [0 0 0] /A << /S /URI /URI (https://nexgen.studio/#contact) >> >>
+endobj
+5 0 obj
+<< /Type /Annot /Subtype /Link /Rect [64.00 151.10 163.75 164.60] /Border [0 0 0] /A << /S /URI /URI (https://nexgen.studio) >> >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R /Annots [4 0 R 5 0 R] >>
+endobj
+7 0 obj
+<< /Type /Pages /Kids [6 0 R] /Count 1 >>
+endobj
+8 0 obj
+<< /Type /Catalog /Pages 7 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000008897 00000 n 
+0000009053 00000 n 
+0000009199 00000 n 
+0000009357 00000 n 
+0000009414 00000 n 
+trailer
+<< /Size 9 /Root 8 0 R >>
+startxref
+9463
+%%EOF

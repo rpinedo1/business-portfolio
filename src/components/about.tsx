@@ -6,33 +6,37 @@ import { SectionHeader, SectionShell } from "@/components/section-shell";
 const processSteps = [
   {
     step: "01",
-    title: "Quick Strategy Call",
-    description: "We align on your goal: more leads, more sales, or more time saved.",
-    outcome: "Outcome: clear success target",
+    title: "Fill the 2-minute intake form",
+    description:
+      "Tell us about your business, your industry, and what you want visitors to do when they land on your page.",
+    outcome: "Takes 2 minutes",
     pinBg: "bg-blue-500",
     pinShadow: "shadow-blue-200",
   },
   {
     step: "02",
-    title: "Simple Growth Plan",
-    description: "You get the exact pages, automations, and priorities to build first.",
-    outcome: "Outcome: clear scope + timeline",
+    title: "Book a quick onboarding call",
+    description:
+      "Schedule a 15-minute call so we can ask a few quick questions and confirm we have everything we need to build.",
+    outcome: "15-min call",
     pinBg: "bg-violet-500",
     pinShadow: "shadow-violet-200",
   },
   {
     step: "03",
-    title: "Build in Weekly Sprints",
-    description: "We ship each week, show progress, and adapt fast when priorities shift.",
-    outcome: "Outcome: no surprises",
-    pinBg: "bg-amber",
-    pinShadow: "shadow-amber/30",
+    title: "We build your free landing page",
+    description:
+      "We design and build your landing page in 3–5 business days. No upfront cost — you only pay for hosting after it's live.",
+    outcome: "Ready in 3–5 days",
+    pinBg: "bg-amber-500",
+    pinShadow: "shadow-amber-200",
   },
   {
     step: "04",
-    title: "Launch and Improve",
-    description: "After launch, we track results and improve what drives revenue and efficiency.",
-    outcome: "Outcome: measurable growth",
+    title: "Review, launch, and add features",
+    description:
+      "We review the page together, make any final tweaks, then go live. Add AI features or custom functionality whenever you're ready.",
+    outcome: "Live and growing",
     pinBg: "bg-green-500",
     pinShadow: "shadow-green-200",
   },
@@ -43,8 +47,8 @@ export default function About() {
     <SectionShell id="about">
       <SectionHeader
         eyebrow="Our Process"
-        title="Four simple steps from idea to measurable results"
-        description="No long handoffs. No confusion. Just a clear plan and steady execution."
+        title="From intake form to live page — no upfront cost"
+        description="Four simple steps from sign-up to a live, professional landing page for your business."
       />
 
       <div className="relative mt-10">
@@ -63,7 +67,7 @@ export default function About() {
             </linearGradient>
           </defs>
           <path
-            d="M 7 11 C 7 24 93 24 93 37 C 93 50 7 50 7 63 C 7 76 93 76 93 89"
+            d="M 7 9 C 7 18 93 18 93 31 C 93 44 7 44 7 57 C 7 70 93 70 93 83 C 93 92 50 96 50 96"
             fill="none"
             stroke="url(#processPathGrad)"
             strokeWidth="2.5"
@@ -91,7 +95,9 @@ export default function About() {
 
               <article className="relative z-10 flex-1 rounded-2xl border border-black/8 bg-white p-4 shadow-[0_1px_3px_rgba(16,24,40,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
                 <h3 className="text-base font-semibold text-foreground">{step.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                  {step.description}
+                </p>
                 <p className="mt-2 text-xs font-semibold text-amber">{step.outcome}</p>
               </article>
             </motion.div>

@@ -2,10 +2,9 @@ import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 
 const footerLinks = {
   Services: [
-    { label: "Web Applications", href: "#services" },
-    { label: "Websites", href: "#services" },
-    { label: "AI Solutions", href: "#services" },
-    { label: "Performance Audits", href: "#services" },
+    { label: "Free Landing Page", href: "#services" },
+    { label: "AI Features", href: "#services" },
+    { label: "Custom Features", href: "#services" },
   ],
   Company: [
     { label: "About", href: "#about" },
@@ -14,9 +13,9 @@ const footerLinks = {
     { label: "Contact", href: "#contact" },
   ],
   Resources: [
-    { label: "Build Plan Call", href: "#contact" },
-    { label: "Case Studies", href: "#work" },
-    { label: "Delivery Process", href: "#about" },
+    { label: "Get Your $0 Setup Page", href: "#contact" },
+    { label: "Our Work", href: "#work" },
+    { label: "How It Works", href: "#about" },
     { label: "Testimonials", href: "#testimonials" },
   ],
 };
@@ -46,7 +45,7 @@ export default function Footer() {
               </span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Web apps, websites, and AI products designed for growth and engineered to last.
+              $0 setup landing pages for small businesses. Grow with AI when you&apos;re ready.
             </p>
             <div className="mt-6 flex gap-2.5">
               {socials.map((social) => (
