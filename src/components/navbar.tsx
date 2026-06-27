@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, Sparkles, X } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll-to-section";
 
 const navLinks = [
@@ -98,6 +99,13 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <Link
+              href="/demo"
+              className="group ml-1 inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium text-mineral transition-all duration-150 hover:bg-mineral/[0.08]"
+            >
+              <Sparkles size={14} className="transition-transform group-hover:scale-110" />
+              Demo
+            </Link>
           </div>
 
           <a
@@ -155,6 +163,14 @@ export default function Navbar() {
                     {link.label}
                   </a>
                 ))}
+                <Link
+                  href="/demo"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-mineral transition-all duration-150 hover:bg-mineral/[0.08]"
+                >
+                  <Sparkles size={15} />
+                  Interactive Demo
+                </Link>
                 <a
                   href="#contact"
                   onClick={(e) => handleNavClick(e, "#contact")}

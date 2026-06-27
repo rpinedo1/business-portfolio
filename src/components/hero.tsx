@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll-to-section";
+import Magnetic from "@/components/magnetic";
 
 function HeroVisual() {
   return (
@@ -190,21 +191,23 @@ export default function Hero() {
               transition={{ duration: 0.65, delay: 0.34 }}
               className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start"
             >
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("#contact");
-                }}
-                className="group inline-flex cursor-pointer items-center gap-2 rounded-xl bg-mineral px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-mineral/30 ring-1 ring-mineral/40 transition-all duration-200 hover:-translate-y-0.5 hover:brightness-105 hover:shadow-xl hover:shadow-mineral/35 active:translate-y-0"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-card/80 opacity-80" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-card" />
-                </span>
-                Request a Quote
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </a>
+              <Magnetic strength={0.4}>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("#contact");
+                  }}
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-xl bg-mineral px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-mineral/30 ring-1 ring-mineral/40 transition-all duration-200 hover:brightness-105 hover:shadow-xl hover:shadow-mineral/35"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-card/80 opacity-80" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-card" />
+                  </span>
+                  Request a Quote
+                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                </a>
+              </Magnetic>
               <a
                 href="#work"
                 onClick={(e) => {
