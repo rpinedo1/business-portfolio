@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Globe, MessageSquare, Smartphone, ArrowRight } from "lucide-react";
 import { SectionHeader, SectionShell } from "@/components/section-shell";
 import { scrollToSection } from "@/lib/scroll-to-section";
+import Tilt from "@/components/tilt";
 
 const tiers = [
   {
@@ -71,11 +72,11 @@ export default function Services() {
         className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
       >
         {tiers.map((tier) => (
-          <motion.article
-            key={tier.title}
-            variants={itemVariants}
-            className={`group relative rounded-2xl border border-black/8 bg-card p-7 shadow-[0_1px_3px_rgba(16,24,40,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-luxe ${tier.accent}`}
-          >
+          <motion.article key={tier.title} variants={itemVariants}>
+            <Tilt
+              max={5}
+              className={`group relative h-full rounded-2xl border border-black/8 bg-card p-7 shadow-[0_1px_3px_rgba(16,24,40,0.06)] transition-shadow duration-300 hover:shadow-luxe ${tier.accent}`}
+            >
             <div
               className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${tier.color} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
             />
@@ -103,6 +104,7 @@ export default function Services() {
                 ))}
               </ul>
             </div>
+            </Tilt>
           </motion.article>
         ))}
       </motion.div>
