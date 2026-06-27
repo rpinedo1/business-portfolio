@@ -11,6 +11,8 @@ import CountUp from "./effects/count-up";
 import DraggableGallery from "./effects/draggable-gallery";
 import ParallaxReveal from "./effects/parallax-reveal";
 import AuroraCard from "./effects/aurora-card";
+import ParticleField from "./effects/particle-field";
+import Galaxy from "./effects/galaxy";
 import SpotlightCard from "./effects/spotlight-card";
 import Marquee from "./effects/marquee";
 import FlipCard from "./effects/flip-card";
@@ -70,6 +72,26 @@ export default function Gallery() {
 
         {/* Bento grid */}
         <div className="mt-14 grid auto-rows-[minmax(0,1fr)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
+          <EffectTile
+            className="lg:col-span-3"
+            title="Real-time 3D Particles"
+            caption="A live WebGL particle field that reacts to the cursor — the same effect powering the header above."
+            useCase="Hero"
+            hint="Move / Touch"
+          >
+            <ParticleField />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Particle Galaxy"
+            caption="A rotating spiral galaxy of glowing points that tilts toward the cursor — a mesmerizing hero or section centerpiece."
+            useCase="Hero"
+            hint="Move / Touch"
+          >
+            <Galaxy />
+          </EffectTile>
+
           <EffectTile
             className="lg:col-span-3"
             title="3D Tilt Cards"

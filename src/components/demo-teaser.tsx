@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Magnetic from "@/components/magnetic";
+import { useCapabilities } from "@/hooks/use-capabilities";
 
 const effects = [
   "3D tilt",
@@ -14,6 +15,8 @@ const effects = [
 ];
 
 export default function DemoTeaser() {
+  const { reducedMotion } = useCapabilities();
+
   return (
     <section className="anchor-section px-6 py-20 lg:px-8 lg:py-28">
       <motion.div
@@ -21,8 +24,20 @@ export default function DemoTeaser() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-white/10 bg-[#0c1016] px-6 py-14 text-white shadow-[0_40px_80px_-40px_rgba(12,16,22,0.6)] sm:px-12 lg:py-20"
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.15rem] shadow-[0_40px_80px_-40px_rgba(12,16,22,0.6)]"
       >
+        {/* Rotating gradient border — oversized, clipped to this container so it never spills */}
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute -inset-1/2"
+          style={{
+            background:
+              "conic-gradient(from 0deg, #05605b, #8fd6cf, #b08542, #5a2f5f, #05605b)",
+          }}
+          animate={reducedMotion ? undefined : { rotate: 360 }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        />
+        <div className="relative m-[1.5px] overflow-hidden rounded-[2rem] bg-[#0c1016] px-6 py-14 text-white sm:px-12 lg:py-20">
         {/* Ambient brand glow */}
         <div
           className="pointer-events-none absolute inset-0"
@@ -86,6 +101,7 @@ export default function DemoTeaser() {
               />
             </Link>
           </Magnetic>
+        </div>
         </div>
       </motion.div>
     </section>
