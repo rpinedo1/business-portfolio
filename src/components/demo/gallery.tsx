@@ -17,6 +17,12 @@ import FlipCard from "./effects/flip-card";
 import BeforeAfter from "./effects/before-after";
 import ToastButton from "./effects/toast-button";
 import MorphBlob from "./effects/morph-blob";
+import DotGrid from "./effects/dot-grid";
+import Accordion from "./effects/accordion";
+import AnimatedTabs from "./effects/animated-tabs";
+import ReorderList from "./effects/reorder-list";
+import ConfettiButton from "./effects/confetti-button";
+import CardStack from "./effects/card-stack";
 
 export default function Gallery() {
   return (
@@ -177,6 +183,66 @@ export default function Gallery() {
             useCase="Atmosphere"
           >
             <MorphBlob />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Interactive Dot Grid"
+            caption="A reactive texture that lights up under the cursor or a fingertip."
+            useCase="Backgrounds"
+            hint="Move / Touch"
+          >
+            <DotGrid />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Smooth Accordion"
+            caption="Animated expand/collapse for FAQs and details — tidy on any screen."
+            useCase="FAQ"
+            hint="Tap"
+          >
+            <Accordion />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Animated Tabs"
+            caption="A sliding indicator and crossfading content for switching between views."
+            useCase="Navigation"
+            hint="Tap"
+          >
+            <AnimatedTabs />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Drag to Reorder"
+            caption="Reorderable lists with spring physics — works with mouse and touch."
+            useCase="Web apps"
+            hint="Drag"
+          >
+            <ReorderList />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Confetti Burst"
+            caption="A celebratory burst for successful bookings, signups, or purchases."
+            useCase="Delight"
+            hint="Tap"
+          >
+            <ConfettiButton />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Swipeable Cards"
+            caption="A throwable card stack for testimonials, results, or product highlights."
+            useCase="Proof"
+            hint="Swipe"
+          >
+            <CardStack />
           </EffectTile>
         </div>
 
