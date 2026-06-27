@@ -11,6 +11,12 @@ import CountUp from "./effects/count-up";
 import DraggableGallery from "./effects/draggable-gallery";
 import ParallaxReveal from "./effects/parallax-reveal";
 import AuroraCard from "./effects/aurora-card";
+import SpotlightCard from "./effects/spotlight-card";
+import Marquee from "./effects/marquee";
+import FlipCard from "./effects/flip-card";
+import BeforeAfter from "./effects/before-after";
+import ToastButton from "./effects/toast-button";
+import MorphBlob from "./effects/morph-blob";
 
 export default function Gallery() {
   return (
@@ -113,6 +119,64 @@ export default function Gallery() {
             useCase="Atmosphere"
           >
             <AuroraCard />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Spotlight"
+            caption="A glow that follows the cursor — or your finger — to make any card feel interactive."
+            useCase="Cards"
+            hint="Move / Touch"
+          >
+            <SpotlightCard />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-4"
+            title="Infinite Marquee"
+            caption="A smooth, looping ticker for logos, tech, or services. Runs effortlessly on mobile."
+            useCase="Logos"
+          >
+            <Marquee />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Flip Cards"
+            caption="Tap to flip and reveal details or pricing on the back. Great for service tiles."
+            useCase="Services"
+            hint="Tap"
+          >
+            <FlipCard />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Before / After"
+            caption="A draggable reveal slider — perfect for showing a redesign or transformation."
+            useCase="Proof"
+            hint="Drag"
+          >
+            <BeforeAfter />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Live Notifications"
+            caption="Real toast alerts for bookings, payments, or new leads. Tap to see one fire."
+            useCase="Feedback"
+            hint="Tap"
+          >
+            <ToastButton />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Organic Shapes"
+            caption="Soft, morphing blobs that add personality without feeling busy."
+            useCase="Atmosphere"
+          >
+            <MorphBlob />
           </EffectTile>
         </div>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
 import WebglHero from "@/components/demo/webgl-hero";
 import Gallery from "@/components/demo/gallery";
 import ScrollProgress from "@/components/demo/scroll-progress";
@@ -15,6 +16,7 @@ export default function DemoPage() {
       <ScrollProgress />
       <WebglHero />
       <Gallery />
+      <Toaster theme="dark" position="bottom-center" richColors />
     </main>
   );
 }
