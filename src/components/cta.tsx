@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { ArrowRight, CheckCircle2, Mail } from "lucide-react";
 import { SectionShell } from "@/components/section-shell";
+import SuccessConfetti from "@/components/success-confetti";
 
 type InquiryData = {
   ownerName: string;
@@ -148,7 +149,8 @@ export default function CTA() {
 
         <div className="rounded-2xl border border-black/8 bg-card p-5 shadow-[0_12px_40px_rgba(16,21,31,0.08)] sm:p-7">
           {submitted ? (
-            <div className="rounded-xl border border-mineral/20 bg-mineral-muted p-5">
+            <div className="relative rounded-xl border border-mineral/20 bg-mineral-muted p-5">
+              <SuccessConfetti />
               <div className="flex items-start gap-3">
                 <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-mineral" />
                 <div>
