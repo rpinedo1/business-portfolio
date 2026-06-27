@@ -23,6 +23,12 @@ import AnimatedTabs from "./effects/animated-tabs";
 import ReorderList from "./effects/reorder-list";
 import ConfettiButton from "./effects/confetti-button";
 import CardStack from "./effects/card-stack";
+import GradientBorder from "./effects/gradient-border";
+import ShimmerText from "./effects/shimmer-text";
+import ProgressRing from "./effects/progress-ring";
+import StarRating from "./effects/star-rating";
+import PricingToggle from "./effects/pricing-toggle";
+import FloatingLabel from "./effects/floating-label";
 
 export default function Gallery() {
   return (
@@ -243,6 +249,64 @@ export default function Gallery() {
             hint="Swipe"
           >
             <CardStack />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Glowing Borders"
+            caption="An animated gradient frame that makes a featured card impossible to miss."
+            useCase="Featured"
+          >
+            <GradientBorder />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Shimmer Headlines"
+            caption="A moving sheen for hero lines and premium callouts."
+            useCase="Headlines"
+          >
+            <ShimmerText />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Progress Rings"
+            caption="Circular meters that draw and count up on view — great for stats."
+            useCase="Stats"
+            hint="Scroll"
+          >
+            <ProgressRing />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Star Ratings"
+            caption="Interactive ratings for reviews and feedback widgets."
+            useCase="Reviews"
+            hint="Tap"
+          >
+            <StarRating />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Pricing Toggle"
+            caption="Animated billing switch with a rolling price — ideal for plan tables."
+            useCase="Pricing"
+            hint="Tap"
+          >
+            <PricingToggle />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Floating Labels"
+            caption="Polished form fields where the label animates out of the way as you type."
+            useCase="Forms"
+            hint="Type"
+          >
+            <FloatingLabel />
           </EffectTile>
         </div>
 
