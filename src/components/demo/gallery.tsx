@@ -11,6 +11,30 @@ import CountUp from "./effects/count-up";
 import DraggableGallery from "./effects/draggable-gallery";
 import ParallaxReveal from "./effects/parallax-reveal";
 import AuroraCard from "./effects/aurora-card";
+import SpotlightCard from "./effects/spotlight-card";
+import Marquee from "./effects/marquee";
+import FlipCard from "./effects/flip-card";
+import BeforeAfter from "./effects/before-after";
+import ToastButton from "./effects/toast-button";
+import MorphBlob from "./effects/morph-blob";
+import DotGrid from "./effects/dot-grid";
+import Accordion from "./effects/accordion";
+import AnimatedTabs from "./effects/animated-tabs";
+import ReorderList from "./effects/reorder-list";
+import ConfettiButton from "./effects/confetti-button";
+import CardStack from "./effects/card-stack";
+import GradientBorder from "./effects/gradient-border";
+import ShimmerText from "./effects/shimmer-text";
+import ProgressRing from "./effects/progress-ring";
+import StarRating from "./effects/star-rating";
+import PricingToggle from "./effects/pricing-toggle";
+import FloatingLabel from "./effects/floating-label";
+import AnimatedCheck from "./effects/animated-check";
+import CopyClipboard from "./effects/copy-clipboard";
+import RangeSlider from "./effects/range-slider";
+import ThemeToggle from "./effects/theme-toggle";
+import Stepper from "./effects/stepper";
+import SkeletonLoader from "./effects/skeleton-loader";
 
 export default function Gallery() {
   return (
@@ -113,6 +137,242 @@ export default function Gallery() {
             useCase="Atmosphere"
           >
             <AuroraCard />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Spotlight"
+            caption="A glow that follows the cursor — or your finger — to make any card feel interactive."
+            useCase="Cards"
+            hint="Move / Touch"
+          >
+            <SpotlightCard />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-4"
+            title="Infinite Marquee"
+            caption="A smooth, looping ticker for logos, tech, or services. Runs effortlessly on mobile."
+            useCase="Logos"
+          >
+            <Marquee />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Flip Cards"
+            caption="Tap to flip and reveal details or pricing on the back. Great for service tiles."
+            useCase="Services"
+            hint="Tap"
+          >
+            <FlipCard />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Before / After"
+            caption="A draggable reveal slider — perfect for showing a redesign or transformation."
+            useCase="Proof"
+            hint="Drag"
+          >
+            <BeforeAfter />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Live Notifications"
+            caption="Real toast alerts for bookings, payments, or new leads. Tap to see one fire."
+            useCase="Feedback"
+            hint="Tap"
+          >
+            <ToastButton />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Organic Shapes"
+            caption="Soft, morphing blobs that add personality without feeling busy."
+            useCase="Atmosphere"
+          >
+            <MorphBlob />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Interactive Dot Grid"
+            caption="A reactive texture that lights up under the cursor or a fingertip."
+            useCase="Backgrounds"
+            hint="Move / Touch"
+          >
+            <DotGrid />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Smooth Accordion"
+            caption="Animated expand/collapse for FAQs and details — tidy on any screen."
+            useCase="FAQ"
+            hint="Tap"
+          >
+            <Accordion />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Animated Tabs"
+            caption="A sliding indicator and crossfading content for switching between views."
+            useCase="Navigation"
+            hint="Tap"
+          >
+            <AnimatedTabs />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Drag to Reorder"
+            caption="Reorderable lists with spring physics — works with mouse and touch."
+            useCase="Web apps"
+            hint="Drag"
+          >
+            <ReorderList />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Confetti Burst"
+            caption="A celebratory burst for successful bookings, signups, or purchases."
+            useCase="Delight"
+            hint="Tap"
+          >
+            <ConfettiButton />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-3"
+            title="Swipeable Cards"
+            caption="A throwable card stack for testimonials, results, or product highlights."
+            useCase="Proof"
+            hint="Swipe"
+          >
+            <CardStack />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Glowing Borders"
+            caption="An animated gradient frame that makes a featured card impossible to miss."
+            useCase="Featured"
+          >
+            <GradientBorder />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Shimmer Headlines"
+            caption="A moving sheen for hero lines and premium callouts."
+            useCase="Headlines"
+          >
+            <ShimmerText />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Progress Rings"
+            caption="Circular meters that draw and count up on view — great for stats."
+            useCase="Stats"
+            hint="Scroll"
+          >
+            <ProgressRing />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Star Ratings"
+            caption="Interactive ratings for reviews and feedback widgets."
+            useCase="Reviews"
+            hint="Tap"
+          >
+            <StarRating />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Pricing Toggle"
+            caption="Animated billing switch with a rolling price — ideal for plan tables."
+            useCase="Pricing"
+            hint="Tap"
+          >
+            <PricingToggle />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Floating Labels"
+            caption="Polished form fields where the label animates out of the way as you type."
+            useCase="Forms"
+            hint="Type"
+          >
+            <FloatingLabel />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Success Check"
+            caption="A self-drawing checkmark to confirm a booking, payment, or submission."
+            useCase="Feedback"
+            hint="Tap"
+          >
+            <AnimatedCheck />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Copy to Clipboard"
+            caption="One-tap copy with instant confirmation — handy for emails and codes."
+            useCase="Utility"
+            hint="Tap"
+          >
+            <CopyClipboard />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Range Slider"
+            caption="A smooth, touch-friendly slider with a live value — great for quote tools."
+            useCase="Web apps"
+            hint="Drag"
+          >
+            <RangeSlider />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Mode Switch"
+            caption="A tactile day/night toggle with a sliding, color-shifting knob."
+            useCase="Settings"
+            hint="Tap"
+          >
+            <ThemeToggle />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Multi-step Flow"
+            caption="A progress stepper for onboarding, checkout, or booking flows."
+            useCase="Web apps"
+            hint="Tap"
+          >
+            <Stepper />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Skeleton Loading"
+            caption="Shimmering placeholders that keep a page feeling fast while data loads."
+            useCase="Performance"
+            hint="Tap"
+          >
+            <SkeletonLoader />
           </EffectTile>
         </div>
 
