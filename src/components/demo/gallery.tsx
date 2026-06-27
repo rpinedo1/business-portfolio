@@ -29,6 +29,12 @@ import ProgressRing from "./effects/progress-ring";
 import StarRating from "./effects/star-rating";
 import PricingToggle from "./effects/pricing-toggle";
 import FloatingLabel from "./effects/floating-label";
+import AnimatedCheck from "./effects/animated-check";
+import CopyClipboard from "./effects/copy-clipboard";
+import RangeSlider from "./effects/range-slider";
+import ThemeToggle from "./effects/theme-toggle";
+import Stepper from "./effects/stepper";
+import SkeletonLoader from "./effects/skeleton-loader";
 
 export default function Gallery() {
   return (
@@ -307,6 +313,66 @@ export default function Gallery() {
             hint="Type"
           >
             <FloatingLabel />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Success Check"
+            caption="A self-drawing checkmark to confirm a booking, payment, or submission."
+            useCase="Feedback"
+            hint="Tap"
+          >
+            <AnimatedCheck />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Copy to Clipboard"
+            caption="One-tap copy with instant confirmation — handy for emails and codes."
+            useCase="Utility"
+            hint="Tap"
+          >
+            <CopyClipboard />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Range Slider"
+            caption="A smooth, touch-friendly slider with a live value — great for quote tools."
+            useCase="Web apps"
+            hint="Drag"
+          >
+            <RangeSlider />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Mode Switch"
+            caption="A tactile day/night toggle with a sliding, color-shifting knob."
+            useCase="Settings"
+            hint="Tap"
+          >
+            <ThemeToggle />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Multi-step Flow"
+            caption="A progress stepper for onboarding, checkout, or booking flows."
+            useCase="Web apps"
+            hint="Tap"
+          >
+            <Stepper />
+          </EffectTile>
+
+          <EffectTile
+            className="lg:col-span-2"
+            title="Skeleton Loading"
+            caption="Shimmering placeholders that keep a page feeling fast while data loads."
+            useCase="Performance"
+            hint="Tap"
+          >
+            <SkeletonLoader />
           </EffectTile>
         </div>
 
