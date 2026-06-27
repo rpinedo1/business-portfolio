@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { SectionHeader, SectionShell } from "@/components/section-shell";
+import Tilt from "@/components/tilt";
 
 const samples = [
   {
@@ -51,8 +52,13 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="shadow-luxe overflow-hidden rounded-2xl border border-black/8 bg-card transition-all duration-300 hover:-translate-y-1"
             >
+              <Tilt
+                max={6}
+                glare
+                glareClassName="rounded-2xl"
+                className="relative h-full overflow-hidden rounded-2xl border border-black/8 bg-card shadow-luxe transition-shadow duration-300 hover:shadow-[0_24px_60px_-30px_rgba(16,21,31,0.55)]"
+              >
               <div>
                 <div className={`relative h-64 overflow-hidden bg-gradient-to-br ${sample.tint}`}>
                   <Image
@@ -97,6 +103,7 @@ export default function Portfolio() {
                   ))}
                 </div>
               </div>
+              </Tilt>
             </motion.article>
           ))}
         </div>

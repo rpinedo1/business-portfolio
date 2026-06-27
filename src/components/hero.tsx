@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll-to-section";
 import Magnetic from "@/components/magnetic";
+import Tilt from "@/components/tilt";
+import AuroraField from "@/components/aurora-field";
 
 function HeroVisual() {
   return (
@@ -119,6 +121,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-[90vh] overflow-x-clip overflow-y-hidden noise-bg">
       <div className="pointer-events-none absolute inset-0">
+        <AuroraField />
         <div className="absolute inset-0 grid-pattern" />
         <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/70 to-transparent" />
       </div>
@@ -232,7 +235,9 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full min-w-0 flex-1 overflow-hidden lg:max-w-[520px]"
           >
-            <HeroVisual />
+            <Tilt max={7} className="h-full w-full">
+              <HeroVisual />
+            </Tilt>
           </motion.div>
         </div>
       </div>
