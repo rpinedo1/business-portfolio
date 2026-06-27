@@ -33,6 +33,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local test artifacts & agent config
+/output
+.claude/settings.local.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

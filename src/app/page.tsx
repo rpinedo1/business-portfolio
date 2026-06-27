@@ -1,9 +1,8 @@
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import Services from "@/components/services";
-import Portfolio from "@/components/portfolio";
 import About from "@/components/about";
-import Testimonials from "@/components/testimonials";
+import Portfolio from "@/components/portfolio";
 import CTA from "@/components/cta";
 import Footer from "@/components/footer";
 import MobileStickyCta from "@/components/mobile-sticky-cta";
@@ -20,8 +19,6 @@ export default function Home() {
         <Portfolio />
         <div className="section-divider" />
         <About />
-        <div className="section-divider" />
-        <Testimonials />
         <div className="section-divider" />
         <CTA />
       </main>

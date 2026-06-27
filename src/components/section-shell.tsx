@@ -41,14 +41,12 @@ export function SectionHeader({
 
   return (
     <div className={cn(centered && "mx-auto max-w-3xl text-center", className)}>
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber">
-        {eyebrow}
-      </p>
-      <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+      <span className={cn("eyebrow", centered && "eyebrow-center")}>{eyebrow}</span>
+      <h2 className="font-display mt-4 text-[2rem] leading-[1.08] text-foreground sm:text-[2.6rem] lg:text-[3.1rem]">
         {title}
       </h2>
       {description ? (
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
           {description}
         </p>
       ) : null}

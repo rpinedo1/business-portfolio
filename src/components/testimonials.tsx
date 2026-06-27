@@ -17,10 +17,10 @@ const testimonials = [
     companyMeta: "B2B fintech | 45-person team",
     avatar: "SC",
     result: "3x engagement in 90 days",
-    avatarBg: "bg-blue-50",
-    avatarText: "text-blue-600",
-    badgeBg: "bg-blue-50",
-    badgeText: "text-blue-600",
+    avatarBg: "bg-mineral-muted",
+    avatarText: "text-mineral",
+    badgeBg: "bg-mineral-muted",
+    badgeText: "text-mineral",
   },
   {
     before: "Support backlog with 4-hour first response and inconsistent quality.",
@@ -31,10 +31,10 @@ const testimonials = [
     companyMeta: "SaaS | 22k MAU",
     avatar: "MJ",
     result: "80% tickets automated",
-    avatarBg: "bg-violet-50",
-    avatarText: "text-violet-600",
-    badgeBg: "bg-violet-50",
-    badgeText: "text-violet-600",
+    avatarBg: "bg-accent-soft",
+    avatarText: "text-plum-depth",
+    badgeBg: "bg-accent-soft",
+    badgeText: "text-plum-depth",
   },
   {
     before: "Paid traffic was rising while landing page conversion stayed flat.",
@@ -45,10 +45,10 @@ const testimonials = [
     companyMeta: "Ecommerce | DTC growth stage",
     avatar: "ER",
     result: "On-time delivery + 3.2x conversion lift",
-    avatarBg: "bg-green-50",
-    avatarText: "text-green-700",
-    badgeBg: "bg-green-50",
-    badgeText: "text-green-700",
+    avatarBg: "bg-muted",
+    avatarText: "text-foreground",
+    badgeBg: "bg-muted",
+    badgeText: "text-foreground",
   },
   {
     before: "Patient scheduling and messaging sat across disconnected systems.",
@@ -59,10 +59,10 @@ const testimonials = [
     companyMeta: "Healthtech | Multi-provider network",
     avatar: "DP",
     result: "8-week delivery",
-    avatarBg: "bg-amber-muted",
-    avatarText: "text-amber",
-    badgeBg: "bg-amber-muted",
-    badgeText: "text-amber",
+    avatarBg: "bg-mineral-muted",
+    avatarText: "text-mineral",
+    badgeBg: "bg-mineral-muted",
+    badgeText: "text-mineral",
   },
 ];
 
@@ -84,7 +84,7 @@ export default function Testimonials() {
     <SectionShell id="testimonials" className="relative overflow-hidden">
       {/* Background accent */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber/[0.07] blur-[130px]" />
+        <div className="absolute left-1/2 top-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-mineral/[0.07] blur-[130px]" />
       </div>
 
       <div className="relative z-10">
@@ -102,7 +102,7 @@ export default function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -12 }}
               transition={{ duration: 1.1, ease: "easeInOut" }}
-              className="group relative rounded-2xl border border-black/8 bg-white p-7 shadow-[0_1px_3px_rgba(16,24,40,0.07)]"
+              className="group relative rounded-2xl border border-black/8 bg-card p-7 shadow-[0_1px_3px_rgba(16,24,40,0.07)]"
             >
               {/* Large decorative quote mark */}
               <div
@@ -140,7 +140,7 @@ export default function Testimonials() {
                 </div>
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, j) => (
-                    <Star key={j} size={11} className="fill-amber text-amber" />
+                    <Star key={j} size={11} className="fill-mineral text-mineral" />
                   ))}
                 </div>
               </div>
@@ -158,7 +158,7 @@ export default function Testimonials() {
                 aria-label={`View testimonial from ${item.name}`}
                 aria-pressed={index === testimonialIndex}
                 className={`h-1.5 rounded-full transition-all ${
-                  index === testimonialIndex ? "w-5 bg-amber" : "w-1.5 bg-black/15 hover:bg-black/30"
+                  index === testimonialIndex ? "w-5 bg-mineral" : "w-1.5 bg-black/15 hover:bg-black/30"
                 }`}
               />
             ))}

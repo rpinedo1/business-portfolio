@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
   { label: "Process", href: "#about" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -68,17 +68,17 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "border-b border-black/8 bg-white/90 shadow-sm shadow-black/[0.04] backdrop-blur-xl"
+            ? "border-b border-black/8 bg-card/90 shadow-sm shadow-black/[0.04] backdrop-blur-xl"
             : "bg-transparent"
         }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <a href="#" className="group flex items-center gap-2.5" onClick={(e) => handleNavClick(e, "#")}>
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-mono text-sm font-bold text-white transition-transform group-hover:scale-105">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-mineral font-mono text-sm font-bold text-white transition-transform group-hover:scale-105">
               N
             </div>
             <span className="text-lg font-bold tracking-tight text-foreground">
-              NexGen<span className="text-amber">.</span>
+              NexGen<span className="text-mineral">.</span>
             </span>
           </a>
 
@@ -90,7 +90,7 @@ export default function Navbar() {
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`rounded-lg px-4 py-2 text-sm transition-all duration-150 ${
                   activeHref === link.href
-                    ? "bg-amber/[0.10] font-semibold text-amber"
+                    ? "bg-mineral/[0.10] font-semibold text-mineral"
                     : "font-medium text-muted-foreground hover:text-foreground"
                 }`}
                 aria-current={activeHref === link.href ? "page" : undefined}
@@ -103,9 +103,9 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, "#contact")}
-            className="hidden rounded-xl bg-amber px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-amber/25 transition hover:brightness-105 md:inline-flex"
+            className="hidden rounded-xl bg-mineral px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-mineral/25 transition hover:brightness-105 md:inline-flex"
           >
-            Get Growth Plan
+            Request a Quote
           </a>
 
           <button
@@ -137,7 +137,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ duration: 0.2 }}
-              className="fixed left-4 right-4 top-20 z-50 overflow-hidden rounded-2xl border border-black/10 bg-white/97 p-3 shadow-xl shadow-black/10 backdrop-blur-xl md:hidden"
+              className="fixed left-4 right-4 top-20 z-50 overflow-hidden rounded-2xl border border-black/10 bg-card/97 p-3 shadow-xl shadow-black/10 backdrop-blur-xl md:hidden"
             >
               <div className="flex flex-col gap-1">
                 {navLinks.map((link) => (
@@ -147,7 +147,7 @@ export default function Navbar() {
                     onClick={(e) => handleNavClick(e, link.href)}
                     className={`rounded-lg px-4 py-3 text-sm transition-all duration-150 ${
                       activeHref === link.href
-                        ? "bg-amber/[0.08] font-semibold text-amber"
+                        ? "bg-mineral/[0.08] font-semibold text-mineral"
                         : "font-medium text-muted-foreground hover:bg-black/[0.03] hover:text-foreground"
                     }`}
                     aria-current={activeHref === link.href ? "page" : undefined}
@@ -158,9 +158,9 @@ export default function Navbar() {
                 <a
                   href="#contact"
                   onClick={(e) => handleNavClick(e, "#contact")}
-                  className="mt-2 rounded-xl bg-amber px-5 py-3 text-center text-sm font-semibold text-white shadow-sm shadow-amber/25 transition hover:brightness-105"
+                  className="mt-2 rounded-xl bg-mineral px-5 py-3 text-center text-sm font-semibold text-white shadow-sm shadow-mineral/25 transition hover:brightness-105"
                 >
-                  Get Growth Plan
+                  Request a Quote
                 </a>
               </div>
             </motion.div>

@@ -2,15 +2,36 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 const contactSchema = z.object({
-  name: z.string().trim().min(2).max(100),
-  email: z.string().trim().email().max(200),
+  // Step 1 — required
   businessName: z.string().trim().min(1).max(200),
-  industry: z.string().trim().min(1).max(100),
-  description: z.string().trim().min(10).max(2000),
-  visitorGoal: z.enum(["call", "book", "buy", "email"]),
-  contactInfo: z.string().trim().min(5).max(500),
-  hasBranding: z.enum(["yes", "no"]),
-  company: z.string().trim().max(0).optional(), // honeypot
+  ownerName: z.string().trim().min(1).max(100),
+  email: z.string().trim().email().max(200),
+  phone: z.string().trim().min(7).max(50),
+  // Step 1 — optional
+  industry: z.string().trim().max(100).optional(),
+  city: z.string().trim().max(200).optional(),
+  // Step 2 — offer
+  topServices: z.string().trim().max(500).optional(),
+  idealCustomer: z.string().trim().max(500).optional(),
+  differentiator: z.string().trim().max(500).optional(),
+  promo: z.string().trim().max(500).optional(),
+  // Step 3 — proof/assets
+  reviewsLink: z.string().trim().max(500).optional(),
+  testimonials: z.string().trim().max(1000).optional(),
+  // Step 4 — lead handling
+  leadPhone: z.string().trim().min(7).max(50),
+  leadEmail: z.string().trim().email().max(200),
+  businessHours: z.string().trim().max(200).optional(),
+  responseSpeed: z.string().trim().max(100).optional(),
+  // Step 5 — upgrades (comma-separated list)
+  upgrades: z.string().trim().max(500).optional(),
+  // Step 6 — consents
+  understandsPricing: z.boolean().optional(),
+  understandsTerm: z.boolean().optional(),
+  smsConsent: z.boolean().optional(),
+  emailConsent: z.boolean().optional(),
+  // Honeypot
+  company: z.string().trim().max(0).optional(),
 });
 
 const WINDOW_MS = 60_000;
@@ -41,6 +62,7 @@ export async function POST(req: NextRequest) {
     if (typeof body?.company === "string" && body.company.trim().length > 0) {
       return NextResponse.json({ ok: true });
     }
+
     const parsed = contactSchema.safeParse(body);
     if (!parsed.success) {
       return NextResponse.json(
@@ -59,34 +81,68 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, email, businessName, industry, description, visitorGoal, contactInfo, hasBranding } = parsed.data;
     const userAgent = req.headers.get("user-agent") ?? "unknown";
+    const {
+      // contact fields
+      ownerName,
+      email,
+      phone,
+      smsConsent,
+      emailConsent,
+      // business fields
+      businessName,
+      industry,
+      city,
+      topServices,
+      idealCustomer,
+      differentiator,
+      promo,
+      reviewsLink,
+      testimonials,
+      leadPhone,
+      leadEmail,
+      businessHours,
+      responseSpeed,
+      upgrades,
+      understandsPricing,
+      understandsTerm,
+    } = parsed.data;
 
     const webhookResponse = await fetch(webhookUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        ...(webhookSecret
-          ? { "x-webhook-secret": webhookSecret }
-          : {}),
+        ...(webhookSecret ? { "x-webhook-secret": webhookSecret } : {}),
       },
       body: JSON.stringify({
-        source: "website-contact-form",
+        source: "website-intake-form",
         timestamp: new Date().toISOString(),
-        lead: {
-          name,
+        leadContact: {
+          ownerName,
           email,
+          phone,
+          smsConsent,
+          emailConsent,
+        },
+        business: {
           businessName,
           industry,
-          description,
-          visitorGoal,
-          contactInfo,
-          hasBranding,
+          city,
+          topServices,
+          idealCustomer,
+          differentiator,
+          promo,
+          reviewsLink,
+          testimonials,
+          leadPhone,
+          leadEmail,
+          businessHours,
+          responseSpeed,
+          upgrades,
+          understandsPricing,
+          understandsTerm,
         },
-        metadata: {
-          ip,
-          userAgent,
-        },
+        metadata: { ip, userAgent },
       }),
       cache: "no-store",
     });

@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
-import { DM_Sans, JetBrains_Mono } from "next/font/google";
+import { Hanken_Grotesk, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import Analytics from "@/components/analytics";
 
-const dmSans = DM_Sans({
+const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const fraunces = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -14,9 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NexGen Studio | Web Apps, Websites & AI Solutions",
+  title: "NexGen Studio | Custom Websites for Service Businesses",
   description:
-    "We build high-performance web applications, stunning websites, and intelligent AI solutions that drive growth and transform businesses.",
+    "Custom websites, landing pages, and booking-ready web experiences for service businesses. Clear scope, polished design, and fast launch timelines.",
 };
 
 export default function RootLayout({
@@ -27,8 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${hankenGrotesk.variable} ${fraunces.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <Analytics />
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
